@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Preloader from './components/preloader'
 import Nav from './components/nav'
+import Footer from "./components/footer";
 import Homepage from './components/homepage'
 import Story from './components/story'
 import Schedule from './components/schedule'
@@ -41,6 +42,7 @@ function App() {
             <Route path="/accommodation" element={<Accommodation />} />
             <Route path="/vendors" element={<Vendors />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       )}
     </>
