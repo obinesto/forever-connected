@@ -1,16 +1,19 @@
 import { useEffect } from "react";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const useScrollFadeIn = (
   triggerRef,
   animationClass,
-  options = {}
+  options,
 ) => {
   useEffect(() => {
+    // Using gsap.context() for proper cleanup
     const ctx = gsap.context(() => {
+      if (!triggerRef.current) return;
+
       gsap.from(animationClass, {
         y: 30,
         opacity: 0,
@@ -19,17 +22,17 @@ export const useScrollFadeIn = (
         ease: "power2.out",
         scrollTrigger: {
           trigger: triggerRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
+          start: "top 90%",
+          end: "bottom 30%",
+          toggleActions: "play none none none",
           scrub: 1,
           fastScrollEnd: true,
           markers: false,
           ...options,
         },
       });
-    }, triggerRef);
+    }, triggerRef); // scope animations to the component
 
-    return () => ctx.revert();
+    return () => ctx.revert(); // cleanup
   }, [triggerRef, animationClass, options]);
 };

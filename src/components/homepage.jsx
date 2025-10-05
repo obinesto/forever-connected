@@ -123,7 +123,7 @@ export default function Homepage() {
       </div>
       <ContentOne img2Prop = {img2} />
       <ContentTwo img5Prop = {img5} />
-      <ContentThree />
+      <ContentThree sliderProp = {Slider}/>
     </>
   );
 }

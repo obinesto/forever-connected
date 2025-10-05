@@ -1,6 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { FaArrowUp, FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { FaChevronUp } from "react-icons/fa6";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -27,14 +27,14 @@ export default function Footer() {
           className="mb-10 bg-amber-400 text-emerald-900 p-3 rounded-full hover:bg-amber-300 transition-colors duration-300"
           aria-label="Back to top"
         >
-          <FaArrowUp />
+          <FaChevronUp />
         </button>
 
         {/* Footer Navigation */}
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8 text-lg">
           <Link to="/story" className="hover:text-amber-400 transition-colors">Love Story</Link>
           <Link to="/schedule" className="hover:text-amber-400 transition-colors">Schedule</Link>
-          <Link to="/moments" className="hover:text-amber-400 transition-colors">Moments</Link>
+          <Link to="/story#photo-gallery" className="hover:text-amber-400 transition-colors">Moments</Link>
           <Link to="/wedding-party" className="hover:text-amber-400 transition-colors">Wedding Party</Link>
           <Link to="/accommodation" className="hover:text-amber-400 transition-colors">Accommodation</Link>
           <Link to="/gift" className="hover:text-amber-400 transition-colors">Gifts</Link>

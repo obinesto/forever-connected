@@ -15,13 +15,14 @@ export default function ContentTwo({ img5Prop }) {
   return (
     <div
       ref={contentTwoRef}
-      className="w-full flex items-center justify-between px-4 h-screen mt-20"
+      className="w-full min-h-screen py-10 flex flex-col gap-8 md:gap-0 md:flex-row items-center justify-between px-4"
     >
-      <figure className="w-[40%] animate-content-two font-cormorant relative overflow-hidden m-2.5 bg-white text-center shadow-lg">
+      {/* snip frame */}
+      <figure className="w-full md:w-[40%] animate-content-two font-cormorant relative overflow-hidden m-2.5 bg-white text-center shadow-lg">
         <img
           src={img5Prop}
           alt="pre-wedding shot 5"
-          className="object-cover max-w-[85%] mx-auto my-10 relative border-3 border-amber-400 p-4 pb-[25%]"
+          className="object-cover w-full max-w-[85%] mx-auto my-6 md:my-10 relative border-3 border-amber-400 p-4 pb-[25%]"
         />
         <figcaption className="absolute left-0 right-0 bottom-20 h-16 bg-white">
           <h3 className="text-emerald-800 text-[1.7em] w-full py-[5px] px-3 m-0 uppercase font-normal">
@@ -34,10 +35,10 @@ export default function ContentTwo({ img5Prop }) {
           </h4>
         </figcaption>
       </figure>
-      <div className="w-[55%] flex flex-col items-center">
+      <div className="w-full md:w-[55%] flex flex-col items-center">
         <div className="w-full animate-content-two flex flex-col items-center ">
-          <div className="w-[80%] text-center camera-shot-border hover:scale-110 transition-transform duration-500 ease-in-out">
-            <h1 className="font-bold text-3xl md:text-4xl">
+          <div className="md:w-[80%] text-center camera-shot-border hover:scale-110 transition-transform duration-500 ease-in-out">
+            <h1 className="font-bold text-2xl md:text-4xl">
               We Anticpate your Presence
             </h1>
             <p className="flex items-center justify-center text-lg font-cormorant text-emerald-800 gap-2">
@@ -48,7 +49,7 @@ export default function ContentTwo({ img5Prop }) {
         </div>
         {/* reception card */}
         <div className="animate-content-two flex flex-col items-center">
-          <div className="mt-12 border-t-1 border-t-gray-50 p-8 bg-white rounded-lg shadow-xl w-full md:w-[80%] h-[300px] text-center flex flex-col justify-center transition-transform duration-300 ease-in-out hover:-translate-y-2">
+          <div className="mt-12 border-t-1 border-t-gray-50 p-4 md:p-8 bg-white rounded-lg shadow-xl w-full md:w-[80%] min-h-[300px] text-center flex flex-col justify-center transition-transform duration-300 ease-in-out hover:-translate-y-2">
             <div className="flex items-center justify-center gap-2">
               <RiHotelLine className="text-emerald-800" size={28} />
               <h2 className="text-2xl font-bold text-emerald-800">
@@ -69,22 +70,24 @@ export default function ContentTwo({ img5Prop }) {
           </div>
         </div>
         {/* Buttons */}
-        <div className="mt-18 flex gap-8 animate-content-two">
-          <Link
-            to="/story"
-            className="text-emerald-800 py-3 px-8 border-emerald-800 border-1 rounded-md hover:text-amber-400 hover:border-amber-400 transition-colors duration-300"
-          >
-            OUR LOVE STORY
-          </Link>
-          <Link
-            to="/moments"
-            className="text-emerald-800 py-3 px-8  border-emerald-800 border-1 rounded-md hover:text-amber-400 hover:border-amber-400 transition-colors duration-300"
-          >
-            OUR MOMENTS
-          </Link>
+        <div className="mt-12 flex flex-col md:flex-row gap-4 md:gap-8 animate-content-two">
+          <div className="flex gap-4 md:gap-8">
+            <Link
+              to="/story"
+              className="text-emerald-800 p-2 md:py-2 md:px-8 border-emerald-800 border-1 rounded-md hover:text-amber-400 hover:border-amber-400 transition-colors duration-300 text-center"
+            >
+              LOVE STORY
+            </Link>
+            <Link
+              to="/story#photo-gallery"
+              className="text-emerald-800 p-2 md:py-2 md:px-8 border-emerald-800 border-1 rounded-md hover:text-amber-400 hover:border-amber-400 transition-colors duration-300 text-center"
+            >
+              OUR MOMENTS
+            </Link>
+          </div>
           <Link
             to="/wedding-party"
-            className="text-emerald-800 py-3 px-8  border-emerald-800 border-1 rounded-md hover:text-amber-400 hover:border-amber-400 transition-colors duration-300"
+            className="text-emerald-800 p-2 md:py-2 md:px-8 border-emerald-800 border-1 rounded-md hover:text-amber-400 hover:border-amber-400 transition-colors duration-300 text-center"
           >
             WEDDING PARTY
           </Link>
