@@ -95,7 +95,7 @@ export default function ContentThree({sliderProp}) {
       >
         {events.map((event, index) => (
           <div
-            className="hidden md:flex flex-col items-center bg-white rounded-2xl shadow-xl max-w-[320px] h-96 p-8 text-center animate-content-three"
+            className="hidden md:flex flex-col items-center bg-white rounded-2xl shadow-xl max-w-[320px] h-96 p-8 text-center animate-content-three transition-transform duration-300 hover:-translate-y-2"
             key={index}
           >
             <div className="mb-4 flex items-center justify-center size-20 rounded-full border-4 border-amber-300 bg-amber-50">

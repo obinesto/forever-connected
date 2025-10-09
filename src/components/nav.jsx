@@ -42,9 +42,6 @@ export default function Nav() {
         <NavLink to="/accommodation" className={getClassName}>
           ACCOMMODATION
         </NavLink>
-        <NavLink to="/vendors" className={getClassName}>
-          VENDORS
-        </NavLink>
       </div>
 
       {/* Hamburger Icon */}
@@ -61,7 +58,6 @@ export default function Nav() {
           <li className="py-2"><NavLink onClick={() => setIsMenuOpen(false)} to="/gift" className={getClassName}>GIFTS</NavLink></li>
           <li className="py-2"><NavLink onClick={() => setIsMenuOpen(false)} to="/wedding-party" className={getClassName}>WEDDING PARTY</NavLink></li>
           <li className="py-2"><NavLink onClick={() => setIsMenuOpen(false)} to="/accommodation" className={getClassName}>ACCOMMODATION</NavLink></li>
-          <li className="py-2"><NavLink onClick={() => setIsMenuOpen(false)} to="/vendors" className={getClassName}>VENDORS</NavLink></li>
         </ul>
       </div>
     </nav>

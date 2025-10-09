@@ -5,12 +5,12 @@ import "slick-carousel/slick/slick-theme.css";
 import ContentOne from "./homepageContents/contentOne";
 import ContentTwo from "./homepageContents/contentTwo";
 import ContentThree from "./homepageContents/contentThree";
-import img1 from "/F&C1.jpg";
-import img2 from "/F&C2.jpg";
-import img3 from "/F&C3.jpg";
-import img4 from "/F&C4.jpg";
-import img5 from "/F&C5.jpg";
-import img6 from "/F&C6.jpg";
+import img1 from "/pre-wedding-shots/F&C1.jpg";
+import img2 from "/pre-wedding-shots/F&C2.jpg";
+import img3 from "/pre-wedding-shots/F&C3.jpg";
+import img4 from "/pre-wedding-shots/F&C4.jpg";
+import img5 from "/pre-wedding-shots/F&C5.jpg";
+import img6 from "/pre-wedding-shots/F&C6.jpg";
 
 
 export default function Homepage() {

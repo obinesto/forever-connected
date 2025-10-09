@@ -9,7 +9,6 @@ import Schedule from './components/schedule'
 import Gift from './components/gift'
 import WeddingParty from './components/weddingParty'
 import Accommodation from './components/accommodation'
-import Vendors from './components/vendors'
 
 
 function App() {
@@ -38,7 +37,6 @@ function App() {
             <Route path="/gift" element={<Gift />} />
             <Route path="/wedding-party" element={<WeddingParty />} />
             <Route path="/accommodation" element={<Accommodation />} />
-            <Route path="/vendors" element={<Vendors />} />
           </Routes>
           <Footer />
         </BrowserRouter>

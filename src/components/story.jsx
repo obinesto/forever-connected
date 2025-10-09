@@ -2,12 +2,12 @@ import { useRef } from "react";
 import { useScrollFadeIn } from "../hooks/useScrollFadeIn";
 import { FaQuoteLeft, FaQuoteRight, FaCloudDownloadAlt } from "react-icons/fa";
 import { RiHeartsLine } from "react-icons/ri";
-import img1 from "/F&C1.jpg";
-import img2 from "/F&C2.jpg";
-import img3 from "/F&C3.jpg";
-import img4 from "/F&C4.jpg";
-import img5 from "/F&C5.jpg";
-import img6 from "/F&C6.jpg";
+import img1 from "/pre-wedding-shots/F&C1.jpg";
+import img2 from "/pre-wedding-shots/F&C2.jpg";
+import img3 from "/pre-wedding-shots/F&C3.jpg";
+import img4 from "/pre-wedding-shots/F&C4.jpg";
+import img5 from "/pre-wedding-shots/F&C5.jpg";
+import img6 from "/pre-wedding-shots/F&C6.jpg";
 
 const storySections = [
   {
@@ -60,7 +60,7 @@ export default function Story() {
       >
         <div className="absolute inset-0 bg-gradient-to-t from-amber-50/30 to-emerald-900/40 flex items-center justify-center">
           <div className="text-center text-white p-4">
-            <h1 className="font-allura text-6xl md:text-8xl bg-gradient-to-r from-amber-300 to-emerald-300 bg-clip-text text-transparent drop-shadow-md py-1">
+            <h1 className="font-allura text-6xl md:text-8xl bg-gradient-to-r from-amber-300 to-emerald-300 bg-clip-text text-transparent drop-shadow-md py-1 px-2">
               Our Love Story
             </h1>
             <p className="mt-2 text-lg font-cormorant">
@@ -93,7 +93,7 @@ export default function Story() {
               </div>
 
               {/* Story Text */}
-              <div className="w-full md:w-7/12 text-center md:text-left">
+              <div className="w-full md:w-7/12 text-center md:text-left transition-transform duration-300 md:hover:-translate-y-2">
                 <div className="flex items-center justify-center md:justify-start gap-4 mb-4">
                   <section.icon size={28} className="text-amber-400" />
                   <h2 className="text-2xl md:text-4xl font-cormorant font-bold text-emerald-800">
