@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import axios from "axios";
 import { useScrollFadeIn } from "../hooks/useScrollFadeIn";
 import { AddToCalendarButton } from "add-to-calendar-button-react";
 import { FaRegCalendarCheck, FaRegClock, FaMapMarkerAlt } from "react-icons/fa";
@@ -72,23 +73,12 @@ export default function Schedule() {
     setError("");
     
     try {
-      const response = await fetch(`${apiUrl}/guest`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(guestDetails),
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to RSVP. Please try again.");
-      }
-      
+      await axios.post(`${apiUrl}/guest`, guestDetails);
       setRsvpStep("success");
       setTimeout(closeModal, 3000); // Close modal after 3 seconds
     } catch (err) {
-      setError(err.message || "An error occurred. Please try again.");
+      const errorMessage = err.response?.data?.message || err.message || "An error occurred. Please try again.";
+      setError(errorMessage);
       setTimeout(() => setError(""), 3000); // Clear error after 3 seconds
     } finally {
       setLoading(false);
