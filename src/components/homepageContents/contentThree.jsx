@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaRegCalendarDays, FaHotel, FaGift } from "react-icons/fa6";
 import { GiGlassCelebration } from 'react-icons/gi';
 import { useScrollFadeIn } from "../../hooks/useScrollFadeIn";
@@ -30,17 +30,12 @@ const events = [
 
 export default function ContentThree({sliderProp}) {
   const contentThreeRef = useRef(null);
-  const navigate = useNavigate();
 
   useScrollFadeIn(contentThreeRef, ".animate-content-three", {
     start: "top 70%",
   });
 
   const Slider = sliderProp;
-
-  // To handle click vs. swipe on mobile slider
-  const pos = useRef({ x: 0, y: 0 });
-  const isDragging = useRef(false);
 
   const mobileSliderSettings = {
   dots: true,
@@ -49,7 +44,7 @@ export default function ContentThree({sliderProp}) {
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: false,
-  swipeToSlide: true,
+  swipeToSlide: false, // Set to false to allow touchThreshold to work reliably
   arrows: true,
   touchThreshold: 10,
   swipe: true,
@@ -81,7 +76,7 @@ export default function ContentThree({sliderProp}) {
       <div className="h-[25vh] md:h-[35%] bg-emerald-800" />
 
       {/* Mobile Slider */}
-      <div className="absolute inset-0 top-[25%] w-full px-4 md:hidden animate-content-three touch-pan-y">
+      <div className="absolute inset-0 top-[25%] w-full px-4 md:hidden animate-content-three">
         <Slider {...mobileSliderSettings}>
           {events.map((event, index) => (
             <div className="px-2" key={index}>
@@ -95,28 +90,7 @@ export default function ContentThree({sliderProp}) {
                 </div>
                 <h3 className="text-xl font-bold capitalize text-emerald-800">{event.type}</h3>
                 <p className="mt-2 text-gray-600 flex-grow">{event.content}</p>
-                <Link
-                  to={event.path}
-                  className="mt-4 text-emerald-800 uppercase tracking-wider font-semibold text-sm border-b-2 border-amber-400 hover:text-amber-400 transition-colors duration-300"
-                  onMouseDown={(e) => {
-                    pos.current = { x: e.clientX, y: e.clientY };
-                    isDragging.current = false;
-                  }}
-                  onMouseMove={() => {
-                    isDragging.current = true;
-                  }}
-                  onMouseUp={(e) => {
-                    const dx = Math.abs(e.clientX - pos.current.x);
-                    const dy = Math.abs(e.clientY - pos.current.y);
-                    if (dx < 5 && dy < 5 && !isDragging.current) {
-                      navigate(event.path);
-                    }
-                    isDragging.current = false;
-                  }}
-                  onClick={(e) => {
-                    if (isDragging.current) e.preventDefault();
-                  }}
-                >
+                <Link to={event.path} className="mt-4 text-emerald-800 uppercase tracking-wider font-semibold text-sm border-b-2 border-amber-400 hover:text-amber-400 transition-colors duration-300">
                   {event.link}
                 </Link>
               </div>
