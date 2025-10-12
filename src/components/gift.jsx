@@ -135,8 +135,8 @@ export default function Gift() {
       </header>
 
       {/* Intro & Bank Details */}
-      <section className="container mx-auto px-2 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
-        <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-2xl p-4 md:p-8 animate-gift transition-transform hover:-translate-y-2 duration-500">
+      <section className="container mx-auto px-2 sm:px-6 lg:px-8 py-16 md:py-24 text-center animate-gift">
+        <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-2xl p-4 md:p-8 transition-transform hover:-translate-y-2 duration-500">
           <div className="text-center">
             <p className="text-lg text-gray-800 leading-relaxed ">
               We would be honored to have you with us on our special day - your
@@ -193,7 +193,7 @@ export default function Gift() {
       </section>
 
       {/* Gift List */}
-      <main className="bg-white py-16 md:py-24">
+      <main className="bg-white py-16 md:py-24 animate-gift">
         <div className="flex items-center justify-center gap-4 p-4 md:p-6">
           <FaGift className="text-4xl md:text-6xl" />
           <p className="text-3xl md:text-4xl font-allura text-center ">
@@ -201,11 +201,11 @@ export default function Gift() {
           </p>
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 md:gap-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-12">
             {giftOptions.map((gift, index) => (
               <div
                 key={index}
-                className="group bg-white rounded-lg shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
+                className="rounded-lg shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
               >
                 <img
                   src={gift.picture}
@@ -213,13 +213,13 @@ export default function Gift() {
                   className="w-full h-32 md:h-48 object-cover transform transition-transform duration-500 group-hover:scale-110"
                   loading="lazy"
                 />
-                <div className="p-2 sm:p-3 md:p-6 text-center">
-                  <h3 className="text-xl font-cormorant font-bold capitalize text-emerald-800">
+                <div className="py-2 sm:p-3 md:p-6 text-center bg-emerald-800 text-amber-400">
+                  <h3 className="text-xl font-cormorant font-bold capitalize">
                     {gift.type}
                   </h3>
-                  <div className="mt-2 flex items-center justify-center gap-2 text-gray-600">
+                  <div className="mt-2 flex items-center justify-center gap-2 ">
                     <FaRegCreditCard className="text-amber-500" />
-                    <p>
+                    <p >
                       {gift.paymentMethod === "cash" &&
                       gift.amount.toLowerCase() !== "as desired"
                         ? "₦"

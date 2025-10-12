@@ -38,16 +38,56 @@ export default function ContentThree({sliderProp}) {
   const Slider = sliderProp;
 
   const mobileSliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    pauseOnHover: true,
-    swipeToSlide: true,
-  };
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: false,
+  swipeToSlide: true,
+  arrows: true,
+  touchThreshold: 10,
+  swipe: true,
+  touchMove: true,
+  draggable: true,
+  cssEase: "ease-out",
+  useCSS: true,
+  useTransform: true,
+  // Add these to prevent swipe from interfering with link clicks
+  pauseOnFocus: true,
+  pauseOnHover: true,
+  waitForAnimate: false
+};
+
+// ... then in your mobile slider section:
+<div className="absolute inset-0 top-[25%] w-full px-4 md:hidden animate-content-three touch-pan-y">
+  <Slider {...mobileSliderSettings}>
+    {events.map((event, index) => (
+      <div className="px-2" key={index}>
+        <div
+          className="bg-white rounded-2xl shadow-xl max-w-[300px] sm:max-w-xs h-[350px] sm:h-96 p-6 sm:p-8 flex flex-col items-center text-center mx-auto"
+        >
+          <div className="mb-4 flex items-center justify-center size-20 rounded-full border-4 border-amber-300 bg-amber-50">
+            <div className="text-emerald-800">
+              <event.icon size={32} />
+            </div>
+          </div>
+          <h3 className="text-xl font-bold capitalize text-emerald-800">{event.type}</h3>
+          <p className="mt-2 text-gray-600 flex-grow">{event.content}</p>
+          <Link 
+            to={event.path} 
+            className="mt-4 text-emerald-800 uppercase tracking-wider font-semibold text-sm border-b-2 border-amber-400 hover:text-amber-400 transition-colors duration-300 cursor-pointer z-10"
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent event from bubbling to slider
+            }}
+          >
+            {event.link}
+          </Link>
+        </div>
+      </div>
+    ))}
+  </Slider>
+</div>
 
   return (
     <div
@@ -67,7 +107,7 @@ export default function ContentThree({sliderProp}) {
       <div className="h-[25vh] md:h-[35%] bg-emerald-800" />
 
       {/* Mobile Slider */}
-      <div className="absolute inset-0 top-[25%] w-full px-4 md:hidden animate-content-three">
+      <div className="absolute inset-0 top-[25%] w-full px-4 md:hidden animate-content-three touch-pan-y">
         <Slider {...mobileSliderSettings}>
           {events.map((event, index) => (
             <div className="px-2" key={index}>
@@ -111,7 +151,10 @@ export default function ContentThree({sliderProp}) {
             </p>
             <Link
               to={event.path}
-              className="mt-4 text-emerald-800 uppercase tracking-wider font-semibold text-sm border-b-2 border-amber-400 hover:text-amber-400 transition-colors duration-300"
+              className="mt-4 text-emerald-800 uppercase tracking-wider font-semibold text-sm border-b-2 border-amber-400 hover:text-amber-400 transition-colors duration-300 cursor-pointer z-10"
+               onClick={(e) => {
+              e.stopPropagation(); // Prevent event from bubbling to slider
+            }}
             >
               {event.link}
             </Link>

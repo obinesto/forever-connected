@@ -71,12 +71,12 @@ export default function Story() {
       </header>
 
       {/* Story Sections */}
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 animate-story">
         <div className="max-w-6xl mx-auto space-y-20 md:space-y-32">
           {storySections.map((section, index) => (
             <section
               key={index}
-              className={`flex flex-col md:flex-row items-center gap-8 md:gap-12 animate-story ${
+              className={`flex flex-col md:flex-row items-center gap-8 md:gap-12 ${
                 index % 2 !== 0 ? "md:flex-row-reverse" : ""
               }`}
             >
@@ -128,11 +128,11 @@ export default function Story() {
               a glimpse into our journey
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 animate-story">
             {galleryImages.map((image, index) => (
               <div
                 key={index}
-                className="relative group overflow-hidden rounded-lg shadow-lg animate-story"
+                className="relative group overflow-hidden rounded-lg shadow-lg"
               >
                 <img
                   src={image.src}
