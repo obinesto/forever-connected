@@ -12,6 +12,9 @@ import img3 from "/pre-wedding-shots/F&C3.jpg";
 import img4 from "/pre-wedding-shots/F&C4.jpg";
 import img5 from "/pre-wedding-shots/F&C5.jpg";
 import img6 from "/pre-wedding-shots/F&C6.jpg";
+import img7 from "/pre-wedding-shots/F&C7.jpg";
+import img11 from "/pre-wedding-shots/F&C11.jpg";
+
 
 
 export default function Homepage() {
@@ -47,7 +50,7 @@ export default function Homepage() {
   };
 
   // Carousel config
-  const carouselImages = [img1, img2, img3, img4, img5, img6];
+  const carouselImages = [img1, img2, img11, img4, img5, img6, img7, img3,];
 
   const sliderSettings = {
     dots: true,

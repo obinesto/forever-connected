@@ -9,6 +9,7 @@ import Schedule from './components/schedule'
 import Gift from './components/gift'
 import WeddingParty from './components/weddingParty'
 import Accommodation from './components/accommodation'
+import Admin from "./components/admin";
 
 function ScrollToHashElement() {
   const location = useLocation();
@@ -53,6 +54,7 @@ function App() {
             <Route path="/gift" element={<Gift />} />
             <Route path="/wedding-party" element={<WeddingParty />} />
             <Route path="/accommodation" element={<Accommodation />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
           <Footer />
         </BrowserRouter>

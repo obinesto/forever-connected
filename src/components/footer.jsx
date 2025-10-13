@@ -78,7 +78,18 @@ export default function Footer() {
         <div className="w-full max-w-md h-px bg-gray-300 mb-8"></div>
 
         <p className="text-sm text-gray-500">
-          &copy; {new Date().getFullYear()} Cyprian Obi. All Rights Reserved.
+          &copy; {new Date().getFullYear()}{" "}
+          <span>
+            <a
+              href="https://cyprianobi.vercel.app/"
+              target="blank"
+              className=""
+            >
+              Cyprian Obi.
+            </a>
+          </span>
+          {" "}
+          All Rights Reserved.
         </p>
       </div>
     </footer>

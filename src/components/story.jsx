@@ -8,6 +8,12 @@ import img3 from "/pre-wedding-shots/F&C3.jpg";
 import img4 from "/pre-wedding-shots/F&C4.jpg";
 import img5 from "/pre-wedding-shots/F&C5.jpg";
 import img6 from "/pre-wedding-shots/F&C6.jpg";
+import img7 from "/pre-wedding-shots/F&C7.jpg";
+import img8 from "/pre-wedding-shots/F&C8.jpg";
+import img9 from "/pre-wedding-shots/F&C9.jpg";
+import img10 from "/pre-wedding-shots/F&C10.jpg";
+import img11 from "/pre-wedding-shots/F&C11.jpg";
+import img12 from "/pre-wedding-shots/F&C13.jpg";
 
 const storySections = [
   {
@@ -28,12 +34,18 @@ const storySections = [
 ];
 
 const galleryImages = [
-  { src: img1, alt: "Couple shot 1" },
-  { src: img2, alt: "Couple shot 2" },
-  { src: img3, alt: "Couple shot 3" },
-  { src: img4, alt: "Couple shot 4" },
-  { src: img5, alt: "Couple shot 5" },
-  { src: img6, alt: "Couple shot 6" },
+  { src: img1 },
+  { src: img7 },
+  { src: img10 },
+  { src: img9 },
+  { src: img5 },
+  { src: img11 },
+  { src: img2 },
+  { src: img8 },
+  { src: img4 },
+  { src: img3 },
+  { src: img6 },
+  { src: img12 },
 ];
 
 export default function Story() {
@@ -137,7 +149,7 @@ export default function Story() {
               >
                 <img
                   src={image.src}
-                  alt={image.alt}
+                  alt={`couple shot ${index + 1}`}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
                   loading="lazy"
                 />
@@ -158,9 +170,10 @@ export default function Story() {
           </div>
           <div className="text-center mt-12 animate-story">
             <p className="text-lg text-black font-light">
-              These photos embodifies the essence of our relationship—being
-              {" "}
-              <span className="font-extrabold font-cormorant text-emerald-800">Forever-Connected.</span>
+              These photos embodifies the essence of our relationship—being{" "}
+              <span className="font-extrabold font-cormorant text-emerald-800">
+                Forever-Connected.
+              </span>
               <br />
               We hope you love them as much as we do.
             </p>
