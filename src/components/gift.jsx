@@ -27,7 +27,7 @@ const giftOptions = [
     type: "deep freezer",
     picture: "/wedding-gifts/Chest-Freezer.jpg",
     paymentMethod: "cash",
-    amount: "40200",
+    amount: "400200",
   },
   {
     type: "pots set",

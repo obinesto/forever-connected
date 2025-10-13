@@ -133,6 +133,7 @@ export default function Story() {
               <div
                 key={index}
                 className="relative group overflow-hidden rounded-lg shadow-lg"
+                tabIndex={0}
               >
                 <img
                   src={image.src}
@@ -143,11 +144,11 @@ export default function Story() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <button
                     onClick={() => handleDownload(image.src)}
-                    className="absolute bottom-2 right-2 flex items-center gap-2 bg-white bg-opacity-80 text-emerald-800 px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 hover:bg-amber-300"
+                    className="absolute bottom-2 right-2 flex items-center gap-2 bg-white bg-opacity-80 text-emerald-800 px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-500 hover:bg-amber-300 focus:outline-none"
                     aria-label={`Download ${image.alt}`}
                   >
                     <FaCloudDownloadAlt size={20} />
-                    <span className="font-semibold text-sm hidden md:inline">
+                    <span className="font-semibold text-sm inline">
                       Download
                     </span>
                   </button>
