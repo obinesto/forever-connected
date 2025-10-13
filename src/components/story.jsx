@@ -14,16 +14,16 @@ const storySections = [
     title: "Our Encounter",
     image: img1,
     icon: RiHeartsLine,
-    text: "It all started on a day just like any other, but it turned out to be the beginning of everything for us. A chance meeting, a shared smile, and a spark that neither of us could ignore. We found ourselves drawn to each other's presence, and what started as a simple conversation quickly blossomed into something much more profound.",
+    text: "Our story began in 2017 at the University of Ibadan, where we were both members of the Board of Lectors at Our Lady Seat of Wisdom Catholic Church. As the financial secretary, I had the duty of following up with members about their financial obligations. One Tuesday, after a general meeting Frank had missed, our paths crossed. We exchanged contacts so I could keep him in the loop about future meetings—a simple act that would unknowingly set the stage for our future.",
     quote:
-      "The best love is the kind that awakens the soul and makes us reach for more.",
+      "Sometimes the most ordinary things could be made extraordinary, simply by doing them with the right people.",
   },
   {
     title: "From Friendship to Forever",
     image: img2,
     icon: RiHeartsLine,
-    text: "From that first meeting, a beautiful friendship grew. We spent countless hours sharing stories, dreams, and laughter, becoming each other's confidant and biggest supporter. As our friendship deepened, so did our love, and it became clear that we were meant to walk through life together, hand in hand, building a future filled with joy and endless adventure.",
-    quote: "We loved with a love that was more than love.",
+    text: "Following our first real conversation, Frank began to call and chat frequently, and I found myself eagerly looking forward to our interactions. What started as friendly check-ins quickly blossomed into something beautiful and sweet that neither of us could ignore. Years down the line, we officially became a couple, and the rest is history. It has been a journey of divine timing, deep friendship, and unwavering love, and we are so grateful for the path that brought us together.",
+    quote: "A true love story never ends.",
   },
 ];
 
@@ -103,8 +103,8 @@ export default function Story() {
                 <p className="text-base md:text-lg leading-relaxed text-gray-700 mb-6">
                   {section.text}
                 </p>
-                <div className="flex justify-center md:justify-start items-center text-gray-500 italic">
-                  <FaQuoteLeft className="text-amber-400 mr-3 flex-shrink-0" />
+                <div className="flex justify-center md:justify-start text-gray-500 italic">
+                  <FaQuoteLeft className="text-amber-400 mr-3 flex-shrink-0 rotate-" />
                   <p className="font-cormorant text-lg">{section.quote}</p>
                   <FaQuoteRight className="text-amber-400 ml-3 flex-shrink-0" />
                 </div>

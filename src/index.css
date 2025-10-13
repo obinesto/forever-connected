@@ -129,3 +129,28 @@ body {
     opacity: 0.1;
   }
 }
+
+.polaroid-frame {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  padding-bottom: 4rem; /* Taller bottom border for the polaroid effect */
+  position: relative;
+  transform: rotate(-2deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.polaroid-frame:hover {
+  transform: rotate(2deg) scale(1.05);
+  z-index: 10;
+}
+
+/* A little flair to make every other frame rotate differently */
+.grid > div:nth-child(even) .polaroid-frame {
+  transform: rotate(2deg);
+}
+
+.grid > div:nth-child(even) .polaroid-frame:hover {
+  transform: rotate(-2deg) scale(1.05);
+}

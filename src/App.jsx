@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, useLocation } from "react-router-dom";
 import Preloader from './components/preloader'
 import Nav from './components/nav'
 import Footer from "./components/footer";
@@ -9,6 +9,21 @@ import Schedule from './components/schedule'
 import Gift from './components/gift'
 import WeddingParty from './components/weddingParty'
 import Accommodation from './components/accommodation'
+
+function ScrollToHashElement() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
+
+  return null;
+}
 
 
 function App() {
@@ -30,6 +45,7 @@ function App() {
       ) : (
         <BrowserRouter>
           <Nav />
+          <ScrollToHashElement />
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/story" element={<Story />} />

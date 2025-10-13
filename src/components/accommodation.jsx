@@ -73,7 +73,7 @@ export default function Accommodation() {
 
       {/* Accommodation List */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 animate-accommodation">
           {accommodationDetails.map((hotel, index) => (
             <div key={index} className="bg-white rounded-lg shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
               <img src={hotel.picture} alt={hotel.name} className="w-full h-56 object-cover" loading="lazy" />

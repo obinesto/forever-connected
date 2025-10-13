@@ -10,6 +10,37 @@ export default function Footer() {
     });
   };
 
+  const footerItems = [
+    {
+      path: "/story",
+      item: "Love Story",
+    },
+    {
+      path: "/schedule",
+      item: "Schedule",
+    },
+    {
+      path: "/story#photo-gallery",
+      item: "Moments",
+    },
+    {
+      path: "/wedding-party",
+      item: "Wedding Party",
+    },
+    {
+      path: "/accommodation",
+      item: "Accommodation",
+    },
+    {
+      path: "/gift",
+      item: "Gifts",
+    },
+    {
+      path: "/schedule#rsvp",
+      item: "RSVP",
+    },
+  ];
+
   return (
     <footer className="bg-white text-emerald-800 py-10 px-4 font-cormorant">
       <div className="container mx-auto flex flex-col items-center text-center max-w-4xl">
@@ -32,12 +63,15 @@ export default function Footer() {
 
         {/* Footer Navigation */}
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8 text-lg">
-          <Link to="/story" className="hover:text-amber-400 transition-colors">Love Story</Link>
-          <Link to="/schedule" className="hover:text-amber-400 transition-colors">Schedule</Link>
-          <Link to="/story#photo-gallery" className="hover:text-amber-400 transition-colors">Moments</Link>
-          <Link to="/wedding-party" className="hover:text-amber-400 transition-colors">Wedding Party</Link>
-          <Link to="/accommodation" className="hover:text-amber-400 transition-colors">Accommodation</Link>
-          <Link to="/gift" className="hover:text-amber-400 transition-colors">Gifts</Link>
+          {footerItems.map((item, index) => (
+            <Link
+              key={index}
+              to={item.path}
+              className="hover:text-amber-400 transition-colors"
+            >
+              {item.item}
+            </Link>
+          ))}
         </div>
 
         {/* Divider */}

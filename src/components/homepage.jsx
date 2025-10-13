@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ContentOne from "./homepageContents/contentOne";
 import ContentTwo from "./homepageContents/contentTwo";
 import ContentThree from "./homepageContents/contentThree";
+import ContentFour from "./homepageContents/contentFour";
 import img1 from "/pre-wedding-shots/F&C1.jpg";
 import img2 from "/pre-wedding-shots/F&C2.jpg";
 import img3 from "/pre-wedding-shots/F&C3.jpg";
@@ -124,6 +125,7 @@ export default function Homepage() {
       <ContentOne img2Prop = {img2} />
       <ContentTwo img5Prop = {img5} />
       <ContentThree sliderProp = {Slider}/>
+      <ContentFour />
     </>
   );
 }

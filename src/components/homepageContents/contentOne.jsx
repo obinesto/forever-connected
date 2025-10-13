@@ -26,11 +26,12 @@ export default function ContentOne({ img2Prop }) {
       </div>
       <div className="relative grid h-[90%] w-[80%] md:w-[90%] lg:w-[80%] m-auto">
         <div className="hidden md:flex flex-col gap-12 absolute top-0 right-0 h-full w-72 lg:w-80 py-2 animate-content-one px-4">
+          {/* text content for desktop 1 */}
           <p className="text-center text-sm md:text-base leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut non,
-            cum officiis quasi inventore numquam nesciunt nulla quibusdam sed
-            vitae eos alias architecto quo natus officia cumque perspiciatis
-            nihil possimus?
+            From our very first conversation, we knew something special was
+            unfolding. Every shared laugh and late-night talk has woven our
+            lives together in the most beautiful way, building a foundation of
+            love, trust, and endless support.
           </p>
           <img
             src={flower}
@@ -44,14 +45,23 @@ export default function ContentOne({ img2Prop }) {
             alt="flower image"
             className="h-60 object-cover rounded-md"
           />
+          {/* text content for desktop 2 */}
           <p className="text-center text-sm md:text-base leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
-            incidunt nihil hic facere earum dolorum sint quam, quia dicta libero
-            enim, blanditiis eius! Laborum doloremque sed quasi excepturi animi
-            quo?
+            Now, as we stand on the brink of forever, we are filled with so much
+            joy for the future. We can't wait to continue building our lives
+            together as husband and wife, surrounded by the people who mean the
+            most to us.
           </p>
         </div>
-
+        {/* text content for mobile 1 */}
+        <div className="md:hidden w-full m-auto animate-content-one px-4">
+          <p className="text-center text-sm leading-relaxed">
+            From our very first conversation, we knew something special was
+            unfolding. Every shared laugh and late-night talk has woven our
+            lives together in the most beautiful way, building a foundation of
+            love, trust, and endless support.
+          </p>
+        </div>
         <div className="size-60 sm:size-72 md:size-80 relative m-auto rounded-full circle-glow animate-content-one">
           <img
             src={img2Prop}
@@ -60,19 +70,13 @@ export default function ContentOne({ img2Prop }) {
             loading="lazy"
           />
         </div>
-        {/* text content for mobile */}
+        {/* text content for mobile 2 */}
         <div className="md:hidden w-full m-auto animate-content-one px-4 mt-10">
           <p className="text-center text-sm leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
-            incidunt nihil hic facere earum dolorum sint quam, quia dicta libero
-            enim, blanditiis eius! Laborum doloremque sed quasi excepturi animi
-            quo?
-          </p>
-          <p className="text-center text-sm leading-relaxed mt-10">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
-            incidunt nihil hic facere earum dolorum sint quam, quia dicta libero
-            enim, blanditiis eius! Laborum doloremque sed quasi excepturi animi
-            quo?
+            Now, as we stand on the brink of forever, we are filled with so much
+            joy for the future. We can't wait to continue building our lives
+            together as husband and wife, surrounded by the people who mean the
+            most to us.
           </p>
         </div>
       </div>

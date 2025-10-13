@@ -195,7 +195,7 @@ export default function Schedule() {
       </main>
 
       {/* RSVP Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24" id="rsvp">
         {/* RSVP card */}
         <div className="container mx-auto px-4 animate-schedule hover:-translate-y-2 transition-transform duration-300">
           <h2 className="text-4xl md:text-5xl text-center font-cormorant font-bold text-emerald-800">
