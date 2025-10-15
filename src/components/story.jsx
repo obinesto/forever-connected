@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useScrollFadeIn } from "../hooks/useScrollFadeIn";
+import { Link } from "react-router-dom";
 import { FaQuoteLeft, FaQuoteRight, FaCloudDownloadAlt } from "react-icons/fa";
 import { RiHeartsLine } from "react-icons/ri";
 import img1 from "/pre-wedding-shots/F&C1.jpg";
@@ -178,6 +179,24 @@ export default function Story() {
               We hope you love them as much as we do.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Wedding Memories Link Section */}
+      <section className="bg-emerald-800 text-white py-16 md:py-20 shadow-xl animate-story">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl md:text-5xl font-cormorant font-bold">
+            Be a Part of Our Story
+          </h2>
+          <p className="mt-4 font-allura text-3xl text-amber-300">
+            share your memories from our special day
+          </p>
+          <p className="mt-4 max-w-2xl mx-auto">
+            Help us build our wedding album with the beautiful moments you captured. Your photos and videos are a treasured part of our new beginning.
+          </p>
+          <Link to="/wedding-memories" className="mt-8 inline-block bg-white text-emerald-800 font-bold py-3 px-10 rounded-full hover:bg-amber-300 hover:text-emerald-900 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            Share Your Memories
+          </Link>
         </div>
       </section>
     </div>

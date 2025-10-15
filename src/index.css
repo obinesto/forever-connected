@@ -154,3 +154,8 @@ body {
 .grid > div:nth-child(even) .polaroid-frame:hover {
   transform: rotate(-2deg) scale(1.05);
 }
+
+/* hide scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}

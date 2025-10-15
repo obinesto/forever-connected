@@ -1,31 +1,17 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, BrowserRouter, useLocation } from "react-router-dom";
-import Preloader from './components/preloader'
-import Nav from './components/nav'
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import Preloader from "./components/preloader";
+import Nav from "./components/nav";
 import Footer from "./components/footer";
-import Homepage from './components/homepage'
-import Story from './components/story'
-import Schedule from './components/schedule'
-import Gift from './components/gift'
-import WeddingParty from './components/weddingParty'
-import Accommodation from './components/accommodation'
+import Homepage from "./components/homepage";
+import Story from "./components/story";
+import Schedule from "./components/schedule";
+import Gift from "./components/gift";
+import WeddingParty from "./components/weddingParty";
+import WeddingMemories from "./components/weddingMemories";
+import Accommodation from "./components/accommodation";
 import Admin from "./components/admin";
-
-function ScrollToHashElement() {
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.hash) {
-      const element = document.getElementById(location.hash.substring(1));
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  }, [location]);
-
-  return null;
-}
-
+import ScrollManager from "./components/scrollManager";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -46,16 +32,18 @@ function App() {
       ) : (
         <BrowserRouter>
           <Nav />
-          <ScrollToHashElement />
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/story" element={<Story />} />
-            <Route path="/schedule" element={<Schedule />} />
-            <Route path="/gift" element={<Gift />} />
-            <Route path="/wedding-party" element={<WeddingParty />} />
-            <Route path="/accommodation" element={<Accommodation />} />
-            <Route path="/admin" element={<Admin />} />
-          </Routes>
+          <ScrollManager>
+            <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/story" element={<Story />} />
+              <Route path="/wedding-memories" element={<WeddingMemories />} />
+              <Route path="/schedule" element={<Schedule />} />
+              <Route path="/gift" element={<Gift />} />
+              <Route path="/wedding-party" element={<WeddingParty />} />
+              <Route path="/accommodation" element={<Accommodation />} />
+              <Route path="/admin" element={<Admin />} />
+            </Routes>
+          </ScrollManager>
           <Footer />
         </BrowserRouter>
       )}
@@ -63,4 +51,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

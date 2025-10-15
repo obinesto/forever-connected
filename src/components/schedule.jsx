@@ -1,10 +1,17 @@
 import { useState, useRef } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useScrollFadeIn } from "../hooks/useScrollFadeIn";
 import { AddToCalendarButton } from "add-to-calendar-button-react";
-import { FaRegCalendarCheck, FaRegClock, FaMapMarkerAlt } from "react-icons/fa";
+import {
+  FaRegCalendarCheck,
+  FaRegClock,
+  FaMapMarkerAlt,
+  FaHeart,
+  FaRegCopy,
+} from "react-icons/fa";
 import { IoClose, IoFlowerOutline } from "react-icons/io5";
-import headerBg from "/header-backgrounds/emerald-dark-image.jpg"
+import headerBg from "/header-backgrounds/emerald-dark-image.jpg";
 import img1 from "/pre-wedding-shots/F&C1.jpg";
 import img3 from "/pre-wedding-shots/F&C3.jpg";
 
@@ -38,7 +45,7 @@ const scheduleDetails = [
   },
 ];
 
-const apiUrl = import.meta.env.VITE_API_URL
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function Schedule() {
   const scheduleRef = useRef(null);
@@ -49,6 +56,14 @@ export default function Schedule() {
   const [guestDetails, setGuestDetails] = useState({ name: "", email: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const [copyStatus, setCopyStatus] = useState("Copy");
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopyStatus("Copied!");
+      setTimeout(() => setCopyStatus("Copy"), 2000); // Reset after 2 seconds
+    });
+  };
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
@@ -61,6 +76,7 @@ export default function Schedule() {
   };
 
   const handleRsvpYes = () => setRsvpStep("attending");
+  const handleRsvpNo = () => setRsvpStep("notAttending");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -71,13 +87,16 @@ export default function Schedule() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    
+
     try {
       await axios.post(`${apiUrl}/guest`, guestDetails);
       setRsvpStep("success");
       setTimeout(closeModal, 3000); // Close modal after 3 seconds
     } catch (err) {
-      const errorMessage = err.response?.data?.message || err.message || "An error occurred. Please try again.";
+      const errorMessage =
+        err.response?.data?.message ||
+        err.message ||
+        "An error occurred. Please try again.";
       setError(errorMessage);
       setTimeout(() => setError(""), 3000); // Clear error after 3 seconds
     } finally {
@@ -251,7 +270,7 @@ export default function Schedule() {
                     Yes, I'll be there
                   </button>
                   <button
-                    onClick={closeModal}
+                    onClick={handleRsvpNo}
                     className="bg-gray-200 text-gray-700 py-2 px-2 md:px-6 rounded-md hover:bg-gray-300 transition-colors"
                   >
                     No, I can't make it
@@ -300,7 +319,10 @@ export default function Schedule() {
                     className="w-full mt-6 bg-emerald-800 text-white font-bold py-3 px-4 rounded-full hover:bg-amber-400 hover:text-emerald-900 transition-all duration-300 flex items-center justify-center disabled:opacity-75 disabled:cursor-not-allowed"
                   >
                     {loading ? (
-                      <><IoFlowerOutline className="animate-spin mr-2" /> Booking RSVP...</>
+                      <>
+                        <IoFlowerOutline className="animate-spin mr-2" />{" "}
+                        Booking RSVP...
+                      </>
                     ) : (
                       "Book RSVP"
                     )}
@@ -311,6 +333,69 @@ export default function Schedule() {
                     {error}
                   </p>
                 )}
+              </div>
+            )}
+
+            {rsvpStep === "notAttending" && (
+              <div className="text-center">
+                <h3 className="text-2xl font-cormorant font-bold text-emerald-800 mb-4">
+                  We're sad you can't make it
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  You will be missed! We'd still love for you to be a part of
+                  our story. Feel free to explore our journey on our{" "}
+                  <Link
+                    to="/story"
+                    onClick={closeModal}
+                    className="text-amber-500 hover:underline font-semibold"
+                  >
+                    story page
+                  </Link>
+                  .
+                </p>
+                <div className="mt-6 bg-emerald-50 p-4 rounded-lg text-sm">
+                  <p className="font-semibold text-emerald-800 flex items-center justify-center gap-2">
+                    Support Our New Beginning{" "}
+                    <FaHeart className="text-amber-500" />
+                  </p>
+                  <p className="mt-2 text-gray-700">
+                    If you'd like to send a gift, you can contribute to our
+                    future via bank transfer or visit our full{" "}
+                    <Link
+                      to="/gift"
+                      onClick={closeModal}
+                      className="text-amber-500 hover:underline font-semibold"
+                    >
+                      gift registry
+                    </Link>
+                    .
+                  </p>
+                  <div className="mt-3 text-left font-cormorant text-emerald-900 space-y-1">
+                    <p>
+                      <strong>Bank:</strong> GTBank
+                    </p>
+                    <p>
+                      <strong>Account:</strong> Cynthia Nwaokocha
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <strong>A/C No:</strong> 0709945500
+                      <button
+                        onClick={() => copyToClipboard("0709945500")}
+                        className="flex items-center gap-1 text-amber-500 hover:text-amber-600 text-xs"
+                        aria-label="Copy account number"
+                      >
+                        <FaRegCopy />{" "}
+                        <span
+                          className={`${
+                            copyStatus === "Copied!" ? "text-emerald-600" : ""
+                          }`}
+                        >
+                          {copyStatus}
+                        </span>
+                      </button>
+                    </p>
+                  </div>
+                </div>
               </div>
             )}
 

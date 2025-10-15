@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { FaUsers, FaSpinner, FaExclamationTriangle } from "react-icons/fa";
 import headerBg from "/header-backgrounds/emerald-dark-image.jpg";
@@ -14,22 +14,27 @@ export default function Admin() {
   const apiUrl = import.meta.env.VITE_API_URL;
   const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD;
 
-  const fetchGuests = async (page = 1) => {
-    setLoading(true);
-    setError("");
-    try {
-      const response = await axios.get(`${apiUrl}/guest?page=${page}&limit=10`);
-      if (response.data && response.data.data) {
-        setGuestsData(response.data.data);
-        setPagination(response.data.pagination);
+  const fetchGuests = useCallback(
+    async (page = 1) => {
+      setLoading(true);
+      setError("");
+      try {
+        const response = await axios.get(
+          `${apiUrl}/guest?page=${page}&limit=10`
+        );
+        if (response.data && response.data.info) {
+          setGuestsData(response.data.info);
+          setPagination(response.data.pagination);
+        }
+      } catch (err) {
+        setError("Failed to fetch guests. Please try again.");
+        console.error("Error fetching guests:", err);
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      setError("Failed to fetch guests. Please try again.");
-      console.error("Error fetching guests:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+    [apiUrl]
+  );
 
   useEffect(() => {
     const savedPassword = localStorage.getItem("admin password");
@@ -42,7 +47,7 @@ export default function Admin() {
     if (isAuthenticated) {
       fetchGuests(1);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, fetchGuests]);
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
@@ -122,13 +127,14 @@ export default function Admin() {
 
         {!loading && !error && (
           <div className="bg-white rounded-lg shadow-xl overflow-x-auto">
-            <h2 className="p-2 md:p-4 font-semibold text-center">Total RSVP: {pagination?.total}</h2>
+            <h2 className="p-2 md:p-4 font-semibold text-center">
+              Total RSVP: {pagination?.total}
+            </h2>
             <table className="w-full text-left">
               <thead className="bg-emerald-800 text-white uppercase text-sm">
                 <tr>
                   <th className="p-4">S/N</th>
                   <th className="p-4">Name</th>
-                  <th className="p-4">Email</th>
                   <th className="p-4">RSVP Date</th>
                 </tr>
               </thead>
@@ -142,7 +148,6 @@ export default function Admin() {
                       {(pagination.page - 1) * pagination.limit + index + 1}
                     </td>
                     <td className="p-4">{guest.name}</td>
-                    <td className="p-4">{guest.email}</td>
                     <td className="p-4 text-gray-600">
                       {new Date(guest.createdAt).toLocaleDateString()}
                     </td>

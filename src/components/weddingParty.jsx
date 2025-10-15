@@ -107,6 +107,14 @@ const groomsmen = [
     picture: "/wedding-party/Abiodun.jpg",
     status: "single",
   },
+  {
+    name: "Charles",
+    funFact: "I can't dance to save myself 😭",
+    wish: "Dear Franklin and Cynthia,\nAs you become one, I wish you a lifetime of love, laughter, and endless adventures together. May your marriage be filled with joy, mutual respect and the kind of love that grows stronger every day. Here’s to dancing through life as the perfect team!",
+    role: "groomsman",
+    picture: "/wedding-party/Charles.jpg",
+    status: "single",
+  },
 ];
 
 const PartyMemberCard = ({ member, onOpenModal }) => (
@@ -128,9 +136,9 @@ const PartyMemberCard = ({ member, onOpenModal }) => (
       <div className="mt-4 h-40 flex flex-col justify-around text-left px-2">
         <p className="text-gray-700 text-sm">
           <span className="font-bold text-emerald-800 italic">Fun Fact:</span>{" "}
-          {member.funFact.trim() !== ""? member.funFact : "💁‍♂️"}
+          {member.funFact.trim() !== "" ? member.funFact : "💁‍♂️"}
         </p>
-        <div className="mt-2 text-gray-700 text-sm">
+        <div className="mt-2 text-gray-700 text-sm overflow-y-scroll">
           <p className="font-bold text-emerald-800">
             Best wishes for the couple:
           </p>
@@ -214,11 +222,11 @@ const PartyModal = ({ isOpen, onClose, members, startIndex }) => {
                   {member.role}
                 </p>
                 <div className="mt-6 text-left w-full px-4">
-                  <p className="text-gray-700 italic">
-                    <span className="font-bold text-emerald-800">
+                  <p className="text-gray-700">
+                    <span className="font-bold text-emerald-800 italic">
                       Fun Fact:
                     </span>{" "}
-                    {member.funFact}
+                    {member.funFact.trim() !== "" ? member.funFact : "💁‍♂️"}
                   </p>
                   <div className="mt-4 text-gray-700">
                     <p className="font-bold text-emerald-800">
