@@ -2,6 +2,36 @@ import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { MdMenu, MdClose } from "react-icons/md";
 
+const navItems = [
+  {
+    path: "/",
+    item: "HOME",
+  },
+  {
+    path: "/story",
+    item: "LOVE STORY",
+  },
+  {
+    path: "/schedule",
+    item: "SCHEDULE",
+  },
+  {
+    path: "/gift",
+    item: "GIFTS",
+  },
+  {
+    path: "/wedding-party",
+    item: "WEDDING PARTY",
+  },
+  {
+    path: "/accommodation",
+    item: "ACCOMMODATION",
+  },
+  {
+    path: "/wedding-memories",
+    item: "MEMORIES",
+  },
+];
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -24,40 +54,43 @@ export default function Nav() {
       </div>
       {/* Desktop Menu */}
       <div className="hidden md:flex w-4/5 text-emerald-800 justify-end gap-4 text-base">
-        <NavLink to="/" className={getClassName}>
-          HOME
-        </NavLink>
-        <NavLink to="/story" className={getClassName}>
-          LOVE STORY
-        </NavLink>
-        <NavLink to="/schedule" className={getClassName}>
-          SCHEDULE
-        </NavLink>
-        <NavLink to="/gift" className={getClassName}>
-          GIFTS
-        </NavLink>
-        <NavLink to="/wedding-party" className={getClassName}>
-          WEDDING PARTY
-        </NavLink>
-        <NavLink to="/accommodation" className={getClassName}>
-          ACCOMMODATION
-        </NavLink>
+        {navItems.map((item, index) => (
+          <NavLink to={item.path} key={index} className={getClassName}>
+            {item.item}
+          </NavLink>
+        ))}
       </div>
 
       {/* Hamburger Icon */}
-      <div onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden z-50">
-        {isMenuOpen ? <MdClose size={30} className="text-emerald-800" /> : <MdMenu size={30} className="text-emerald-800" />}
+      <div
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        className="md:hidden z-50"
+      >
+        {isMenuOpen ? (
+          <MdClose size={30} className="text-emerald-800" />
+        ) : (
+          <MdMenu size={30} className="text-emerald-800" />
+        )}
       </div>
 
       {/* Mobile Menu */}
-      <div className={`md:hidden absolute top-0 left-0 w-full h-screen bg-gray-100 flex flex-col justify-center items-center transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div
+        className={`md:hidden absolute top-0 left-0 w-full h-screen bg-gray-100 flex flex-col justify-center items-center transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
         <ul className="text-emerald-800 text-lg text-center">
-          <li className="py-2"><NavLink onClick={() => setIsMenuOpen(false)} to="/" className={getClassName}>HOME</NavLink></li>
-          <li className="py-2"><NavLink onClick={() => setIsMenuOpen(false)} to="/story" className={getClassName}>LOVE STORY</NavLink></li>
-          <li className="py-2"><NavLink onClick={() => setIsMenuOpen(false)} to="/schedule" className={getClassName}>SCHEDULE</NavLink></li>
-          <li className="py-2"><NavLink onClick={() => setIsMenuOpen(false)} to="/gift" className={getClassName}>GIFTS</NavLink></li>
-          <li className="py-2"><NavLink onClick={() => setIsMenuOpen(false)} to="/wedding-party" className={getClassName}>WEDDING PARTY</NavLink></li>
-          <li className="py-2"><NavLink onClick={() => setIsMenuOpen(false)} to="/accommodation" className={getClassName}>ACCOMMODATION</NavLink></li>
+          {navItems.map((item, index) => (
+            <li key={index} className="py-2">
+              <NavLink
+                onClick={() => setIsMenuOpen(false)}
+                to={item.path}
+                className={getClassName}
+              >
+                {item.item}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>
