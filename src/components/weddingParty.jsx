@@ -115,6 +115,14 @@ const groomsmen = [
     picture: "/wedding-party/Charles.jpg",
     status: "single",
   },
+  {
+    name: "Olalere",
+    funFact: "I am an athlete",
+    wish: "A blissful marriage",
+    role: "groomsman",
+    picture: "/wedding-party/Olalere.jpg",
+    status: "single",
+  },
 ];
 
 const PartyMemberCard = ({ member, onOpenModal }) => (
