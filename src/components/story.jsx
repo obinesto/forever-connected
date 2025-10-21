@@ -21,7 +21,7 @@ const storySections = [
     title: "Our Encounter",
     image: img1,
     icon: RiHeartsLine,
-    text: "Our story began in 2017 at the University of Ibadan, where we were both members of the Board of Lectors at Our Lady Seat of Wisdom Catholic Church. As the financial secretary, I had the duty of following up with members about their financial obligations. One Tuesday, after a general meeting Frank had missed, our paths crossed. We exchanged contacts so I could keep him in the loop about future meetings—a simple act that would unknowingly set the stage for our future.",
+    text: "Our story began in 2017 at the University of Ibadan, where we were both members of the Board of Lectors at Our Lady Seat of Wisdom Catholic Church. Fate intervened during a lectors’ meeting. Frank, drawn by my natural hair, initiated a conversation. For me, as the financial secretary, it was a simple act of exchanging contacts to keep him informed about meetings after he had missed one. For him, it was the beginning of something special after saving me from a stalker. This simple act unknowingly set the stage for our future.",
     quote:
       "Sometimes the most ordinary things could be made extraordinary, simply by doing them with the right people.",
   },
@@ -29,7 +29,7 @@ const storySections = [
     title: "From Friendship to Forever",
     image: img2,
     icon: RiHeartsLine,
-    text: "Following our first real conversation, Frank began to call and chat frequently, and I found myself eagerly looking forward to our interactions. What started as friendly check-ins quickly blossomed into something beautiful and sweet that neither of us could ignore. Years down the line, we officially became a couple, and the rest is history. It has been a journey of divine timing, deep friendship, and unwavering love, and we are so grateful for the path that brought us together.",
+    text: "Following our first real conversation, Frank began to call and chat frequently, and we found myself eagerly looking forward to our interactions. What started as friendly check-ins quickly blossomed into something beautiful and sweet that neither of us could ignore. Years down the line, we officially became a couple, and the rest is history. It has been a journey of divine timing, deep friendship, and unwavering love, and we are so grateful for the path that brought us together.",
     quote: "A true love story never ends.",
   },
 ];
@@ -192,9 +192,14 @@ export default function Story() {
             share your memories from our special day
           </p>
           <p className="mt-4 max-w-2xl mx-auto">
-            Help us build our wedding album with the beautiful moments you captured. Your photos and videos are a treasured part of our new beginning.
+            Help us build our wedding album with the beautiful moments you
+            captured. Your photos and videos are a treasured part of our new
+            beginning.
           </p>
-          <Link to="/wedding-memories" className="mt-8 inline-block bg-white text-emerald-800 font-bold py-3 px-10 rounded-full hover:bg-amber-300 hover:text-emerald-900 transition-all duration-300 transform hover:scale-105 shadow-lg">
+          <Link
+            to="/wedding-memories"
+            className="mt-8 inline-block bg-white text-emerald-800 font-bold py-3 px-10 rounded-full hover:bg-amber-300 hover:text-emerald-900 transition-all duration-300 transform hover:scale-105 shadow-lg"
+          >
             Share Your Memories
           </Link>
         </div>
