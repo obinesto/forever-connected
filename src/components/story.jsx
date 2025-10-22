@@ -18,19 +18,19 @@ import img12 from "/pre-wedding-shots/F&C13.jpg";
 
 const storySections = [
   {
-    title: "Our Encounter",
+    title: "Cynthia's POV",
     image: img1,
     icon: RiHeartsLine,
-    text: "Our story began in 2017 at the University of Ibadan, where we were both members of the Board of Lectors at Our Lady Seat of Wisdom Catholic Church. Fate intervened during a lectors’ meeting. Frank, drawn by my natural hair, initiated a conversation. For me, as the financial secretary, it was a simple act of exchanging contacts to keep him informed about meetings after he had missed one. For him, it was the beginning of something special after saving me from a stalker. This simple act unknowingly set the stage for our future.",
+    text: "Our story began in 2017 at the University of Ibadan, where we were both members of the Board of Lectors at Our Lady Seat of Wisdom Catholic Church. As the financial secretary, I had the duty of following up with members about their financial obligations. One Tuesday, I met Frank on my way back from general meeting. He had apparently missed the meeting, having overslept. We exchanged contacts so I could keep him in the loop about future meetings—a simple act that would unknowingly set the stage for our future.\n\nFollowing our first real conversation, Frank began to call and chat frequently, and I found myself eagerly looking forward to our interactions. What started as friendly check-ins quickly blossomed into something beautiful and sweet that neither of us could ignore. Years down the line, we officially became a couple, and the rest is history. It has been a journey of divine timing, deep friendship, and unwavering love, and we are so grateful for the path that brought us together.",
     quote:
       "Sometimes the most ordinary things could be made extraordinary, simply by doing them with the right people.",
   },
   {
-    title: "From Friendship to Forever",
+    title: "Franklin's POV",
     image: img2,
     icon: RiHeartsLine,
-    text: "Following our first real conversation, Frank began to call and chat frequently, and we found myself eagerly looking forward to our interactions. What started as friendly check-ins quickly blossomed into something beautiful and sweet that neither of us could ignore. Years down the line, we officially became a couple, and the rest is history. It has been a journey of divine timing, deep friendship, and unwavering love, and we are so grateful for the path that brought us together.",
-    quote: "A true love story never ends.",
+    text: "I noticed a girl with long natural hair always sitting at the front row during lectors’ meetings. One day, my curiosity got the better of me, and I reached out to touch her hair without permission. To my surprise, she didn't flinch; rather, she turned and smiled. I took it as a sign to break the ice.\n\nI walked up to her after the meeting and struck up a conversation. Fortunately, we used the same route to our respective hostels. We exchanged numbers one day after I overslept and missed a meeting, and she said she would be calling to remind me. The conversation was ignited after I saved her from a stalker at Shokem 😂. We moved from sparing to lengthy conversations, and the rest was history.",
+    quote: "It was the smile for me, and the rest is history.",
   },
 ];
 
@@ -109,11 +109,11 @@ export default function Story() {
               <div className="w-full md:w-7/12 text-center md:text-left transition-transform duration-300 md:hover:-translate-y-2">
                 <div className="flex items-center justify-center md:justify-start gap-4 mb-4">
                   <section.icon size={28} className="text-amber-400" />
-                  <h2 className="text-2xl md:text-4xl font-cormorant font-bold text-emerald-800">
+                  <h2 className="text-2xl md:text-4xl font-bold text-emerald-800">
                     {section.title}
                   </h2>
                 </div>
-                <p className="text-base md:text-lg leading-relaxed text-gray-700 mb-6">
+                <p className="text-base md:text-lg leading-relaxed text-gray-900 mb-6 font-cormorant whitespace-pre-line">
                   {section.text}
                 </p>
                 <div className="flex justify-center md:justify-start text-gray-500 italic">
