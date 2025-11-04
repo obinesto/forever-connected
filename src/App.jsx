@@ -5,14 +5,14 @@ import { SpeedInsights } from "@vercel/speed-insights/react"
 import Preloader from "./components/preloader";
 import Nav from "./components/nav";
 import Footer from "./components/footer";
-import Homepage from "./components/homepage";
-import Story from "./components/story";
-import Schedule from "./components/schedule";
-import Gift from "./components/gift";
-import WeddingParty from "./components/weddingParty";
-import WeddingMemories from "./components/weddingMemories";
-import Accommodation from "./components/accommodation";
-import Admin from "./components/admin";
+import Homepage from "./pages/homepage"
+import Story from "./pages/story";
+import Schedule from "./pages/schedule";
+import Gift from "./pages/gift";
+import WeddingParty from "./pages/weddingParty";
+import WeddingMemories from "./pages/weddingMemories";
+import Accommodation from "./pages/accommodation";
+import Admin from "./pages/admin";
 import ScrollManager from "./components/scrollManager";
 
 function App() {
