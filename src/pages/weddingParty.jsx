@@ -1,8 +1,10 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Slider from "react-slick";
 import { IoClose } from "react-icons/io5";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+import { motion as Motion } from "framer-motion";
 import { useScrollFadeIn } from "../hooks/useScrollFadeIn";
+import Header from "../components/header";
 import weddingPartyBg from "/header-backgrounds/wedding-party-bg.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -257,9 +259,9 @@ const PartyModal = ({ isOpen, onClose, members, startIndex }) => {
 };
 
 export default function WeddingParty() {
-  const partyRef = useRef(null);
-  useScrollFadeIn(partyRef, ".animate-weddingParty");
-
+  const [bridalAnimation] = useScrollFadeIn();
+  const [groomAnimation] = useScrollFadeIn();
+  
   const [modalState, setModalState] = useState({
     isOpen: false,
     members: [],
@@ -275,58 +277,49 @@ export default function WeddingParty() {
   };
 
   return (
-    <div ref={partyRef} className="pt-[60px] bg-amber-50 text-emerald-900">
+    <div className="pt-[60px] bg-amber-50 text-emerald-900">
       {/* Header */}
-      <header
-        className="relative h-[50vh] bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: `url(${weddingPartyBg})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-black/50 flex items-center justify-center">
-          <div className="text-center text-white p-4">
-            <h1 className="font-allura text-6xl md:text-8xl bg-gradient-to-r from-amber-300 to-emerald-300 bg-clip-text text-transparent drop-shadow-md py-1 px-2">
-              Wedding Party
-            </h1>
-            <p className="mt-2 text-lg font-cormorant">
-              Meet the amazing people standing by our side.
-            </p>
-          </div>
-        </div>
-      </header>
-
+      <Header
+        backgroundImage={weddingPartyBg}
+        headerText={"Wedding Party"}
+        headerParagraph={" Meet the amazing people standing by our side."}
+      />
       {/* Main Content */}
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 animate-weddingParty">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="flex flex-col gap-16 md:gap-8">
           {/* Bridesmaids Section */}
-          <section className="w-full">
+          <Motion.section {...bridalAnimation} className="w-full">
             <h2 className="text-4xl md:text-5xl text-center font-allura text-emerald-800 mb-6">
               Bridal Party
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-8">
               {bridesmaids.map((member, index) => (
-                <PartyMemberCard
-                  key={index}
-                  member={member}
-                  onOpenModal={() => openModal(bridesmaids, index)}
-                />
+                <Motion.div variants={bridalAnimation.variants} key={index}>
+                  <PartyMemberCard
+                    member={member}
+                    onOpenModal={() => openModal(bridesmaids, index)}
+                  />
+                </Motion.div>
               ))}
             </div>
-          </section>
+          </Motion.section>
 
           {/* Groomsmen Section */}
-          <section className="w-full mt-12">
+          <Motion.section {...groomAnimation} className="w-full mt-12">
             <h2 className="text-4xl md:text-5xl text-center font-allura text-emerald-800 mb-6">
               Groom's Party
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-8">
               {groomsmen.map((member, index) => (
-                <PartyMemberCard
-                  key={index}
-                  member={member}
-                  onOpenModal={() => openModal(groomsmen, index)}
-                />
+                <Motion.div variants={groomAnimation.variants} key={index}>
+                  <PartyMemberCard
+                    member={member}
+                    onOpenModal={() => openModal(groomsmen, index)}
+                  />
+                </Motion.div>
               ))}
             </div>
-          </section>
+          </Motion.section>
         </div>
       </main>
 

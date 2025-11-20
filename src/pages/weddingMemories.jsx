@@ -1,35 +1,24 @@
-import { useRef } from "react";
 import { useScrollFadeIn } from "../hooks/useScrollFadeIn";
+import { motion as Motion} from "framer-motion";
 import { FaCameraRetro, FaGoogleDrive } from "react-icons/fa";
+import Header from "../components/header";
 import weddingMemoriesBg from "/header-backgrounds/memories-bg.jpg";
 
 export default function WeddingMemories() {
-  const memoriesRef = useRef(null);
-  useScrollFadeIn(memoriesRef, ".animate-weddingMemories");
+  const [animation] = useScrollFadeIn();
 
   const googleDriveLink = "https://drive.google.com/drive/folders/1xjZMPEjqLWX__-yeYaUEtLqNMauXIrFk";
 
   return (
-    <div ref={memoriesRef} className="pt-[60px] bg-amber-50 text-emerald-900">
+    <div className="pt-[60px] bg-amber-50 text-emerald-900">
       {/* Header */}
-      <header
-        className="relative h-[50vh] bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: `url(${weddingMemoriesBg})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-black/50 flex items-center justify-center">
-          <div className="text-center text-white p-4">
-            <h1 className="font-allura text-6xl md:text-8xl bg-gradient-to-r from-amber-300 to-emerald-300 bg-clip-text text-transparent drop-shadow-md py-1 px-2">
-              Share The Memories
-            </h1>
-            <p className="mt-2 text-lg font-cormorant">
-              Help us capture every moment of our special day.
-            </p>
-          </div>
-        </div>
-      </header>
-
+      <Header
+        backgroundImage={weddingMemoriesBg}
+        headerText={"Share The Memories"}
+        headerParagraph={"Help us capture every moment of our special day."}
+      />
       {/* Main Content */}
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 animate-weddingMemories">
+      <Motion.main {...animation} className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-3xl mx-auto text-center p-8 md:p-12">
           <FaCameraRetro className="text-6xl text-emerald-800 mx-auto mb-6" />
           <h2 className="text-4xl md:text-5xl font-cormorant font-bold text-emerald-800">
@@ -55,7 +44,7 @@ export default function WeddingMemories() {
             Upload to Google Drive
           </a>
         </div>
-      </main>
+      </Motion.main>
     </div>
   );
 }

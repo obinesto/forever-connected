@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { motion as Motion} from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaRegCalendarDays, FaHotel, FaGift } from "react-icons/fa6";
 import { GiGlassCelebration } from "react-icons/gi";
@@ -29,11 +29,8 @@ const events = [
 ];
 
 export default function ContentThree({ sliderProp }) {
-  const contentThreeRef = useRef(null);
-
-  useScrollFadeIn(contentThreeRef, ".animate-content-three", {
-    start: "top 70%",
-  });
+  const [animation] = useScrollFadeIn({ threshold: 0.2 });
+  const [animationCards] = useScrollFadeIn({ threshold: 0.1 });
 
   const Slider = sliderProp;
 
@@ -49,12 +46,14 @@ export default function ContentThree({ sliderProp }) {
   };
 
   return (
-    <div
-      ref={contentThreeRef}
+    <Motion.div
+      {...animation}
       className="relative w-full h-[80vh] md:h-screen mt-10"
     >
       {/* Background Divs */}
-      <div className="h-[45vh] md:h-[65%] bg-amber-50 flex flex-col items-center pt-8 md:pt-12 animate-content-three">
+      <Motion.div
+        variants={animation.variants}
+        className="h-[45vh] md:h-[65%] bg-amber-50 flex flex-col items-center pt-8 md:pt-12">
         <h1 className="font-bold font-allura text-2xl sm:text-3xl md:text-4xl text-emerald-800 flex items-center gap-2 text-center px-4">
           Join Our Celebration
           <GiGlassCelebration size={40} />
@@ -62,11 +61,15 @@ export default function ContentThree({ sliderProp }) {
         <p className="mt-2 font-cormorant text-base md:text-lg text-gray-600 px-4">
           We look forward to having you
         </p>
-      </div>
+      </Motion.div>
+
       <div className="h-[35vh] md:h-[35%] bg-emerald-800" />
 
       {/* Mobile Slider */}
-      <div className="absolute inset-0 top-[25%] w-full px-4 md:hidden animate-content-three">
+      <div
+        {...animationCards}
+        className="absolute inset-0 top-[25%] w-full px-4 md:hidden"
+      >
         <Slider {...mobileSliderSettings}>
           {events.map((event, index) => (
             <div className="px-2" key={index}>
@@ -93,10 +96,14 @@ export default function ContentThree({ sliderProp }) {
       </div>
 
       {/* Desktop event cards */}
-      <div className="hidden md:flex absolute inset-0 top-[15%] items-center justify-center gap-8 lg:gap-16 px-8 animate-content-three">
+      <Motion.div
+        {...animationCards}
+        className="hidden md:flex absolute inset-0 top-[15%] items-center justify-center gap-8 lg:gap-16 px-8"
+      >
         {events.map((event, index) => (
-          <div
-            className="hidden md:flex flex-col items-center bg-white rounded-2xl shadow-xl max-w-[320px] h-96 p-8 text-center animate-content-three transition-transform duration-300 hover:-translate-y-2"
+          <Motion.div
+            variants={animationCards.variants}
+            className="hidden md:flex flex-col items-center bg-white rounded-2xl shadow-xl max-w-[320px] h-96 p-8 text-center transition-transform duration-300 hover:-translate-y-2"
             key={index}
           >
             <div className="mb-4 flex items-center justify-center size-20 rounded-full border-4 border-amber-300 bg-amber-50">
@@ -114,9 +121,9 @@ export default function ContentThree({ sliderProp }) {
             >
               {event.link}
             </Link>
-          </div>
+          </Motion.div>
         ))}
-      </div>
-    </div>
+      </Motion.div>
+    </Motion.div>
   );
 }

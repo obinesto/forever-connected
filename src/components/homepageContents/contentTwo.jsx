@@ -1,24 +1,24 @@
-import { useRef } from "react";
+import { motion as Motion} from "framer-motion";
 import { Link } from "react-router-dom";
 import { RiHotelLine } from "react-icons/ri";
 import { IoLocationOutline } from "react-icons/io5";
 import { useScrollFadeIn } from "../../hooks/useScrollFadeIn";
 
 export default function ContentTwo({ img5Prop }) {
-  const contentTwoRef = useRef(null);
-
-  useScrollFadeIn(contentTwoRef, ".animate-content-two", {
-    duration: 1,
-    start: "top 70%",
+  const [animation] = useScrollFadeIn({
+    threshold: 0.2,
   });
 
   return (
-    <div
-      ref={contentTwoRef}
+    <Motion.div
+      {...animation}
       className="w-full min-h-screen py-10 flex flex-col gap-8 md:gap-0 md:flex-row items-center justify-between px-4"
     >
       {/* snip frame */}
-      <figure className="w-full md:w-[40%] animate-content-two font-cormorant relative overflow-hidden m-2.5 bg-white text-center shadow-lg">
+      <Motion.figure
+        variants={animation.variants}
+        className="w-full md:w-[40%] font-cormorant relative overflow-hidden m-2.5 bg-white text-center shadow-lg"
+      >
         <img
           src={img5Prop}
           alt="pre-wedding shot 5"
@@ -34,9 +34,12 @@ export default function ContentTwo({ img5Prop }) {
             <span className="text-amber-400">C</span>
           </h4>
         </figcaption>
-      </figure>
+      </Motion.figure>
       <div className="w-full md:w-[55%] flex flex-col items-center">
-        <div className="w-full animate-content-two flex flex-col items-center ">
+        <Motion.div
+          variants={animation.variants}
+          className="w-full flex flex-col items-center "
+        >
           <div className="md:w-[80%] text-center camera-shot-border hover:scale-110 transition-transform duration-500 ease-in-out">
             <h1 className="font-bold text-2xl md:text-4xl">
               We Anticpate your Presence
@@ -46,9 +49,12 @@ export default function ContentTwo({ img5Prop }) {
               Delta, Nigeria
             </p>
           </div>
-        </div>
+        </Motion.div>
         {/* reception card */}
-        <div className="animate-content-two flex flex-col items-center">
+        <Motion.div
+          variants={animation.variants}
+          className="flex flex-col items-center"
+        >
           <div className="mt-12 border-t-1 border-t-gray-50 p-4 md:p-8 bg-white rounded-lg shadow-xl w-full md:w-[80%] min-h-[300px] text-center flex flex-col justify-center transition-transform duration-300 ease-in-out hover:-translate-y-2">
             <div className="flex items-center justify-center gap-2">
               <RiHotelLine className="text-emerald-800" size={28} />
@@ -68,9 +74,12 @@ export default function ContentTwo({ img5Prop }) {
               <p>Delta State, Nigeria</p>
             </div>
           </div>
-        </div>
+        </Motion.div>
         {/* Buttons */}
-        <div className="mt-12 flex flex-col md:flex-row gap-4 md:gap-8 animate-content-two">
+        <Motion.div
+          variants={animation.variants}
+          className="mt-12 flex flex-col md:flex-row gap-4 md:gap-8"
+        >
           <div className="flex gap-4 md:gap-8">
             <Link
               to="/story"
@@ -91,8 +100,8 @@ export default function ContentTwo({ img5Prop }) {
           >
             WEDDING PARTY
           </Link>
-        </div>
+        </Motion.div>
       </div>
-    </div>
+    </Motion.div>
   );
 }

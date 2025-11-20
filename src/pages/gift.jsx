@@ -1,7 +1,9 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useScrollFadeIn } from "../hooks/useScrollFadeIn";
+import { motion as Motion} from "framer-motion";
 import { FaRegCopy, FaRegCreditCard } from "react-icons/fa";
 import { FaGift } from "react-icons/fa6";
+import Header from "../components/header";
 import giftHeaderBg from "/header-backgrounds/golden-gift-bg.jpg";
 
 const giftOptions = [
@@ -104,9 +106,9 @@ const giftOptions = [
 ];
 
 export default function Gift() {
-  const giftRef = useRef(null);
   const [copyStatus, setCopyStatus] = useState("Copy");
-  useScrollFadeIn(giftRef, ".animate-gift");
+  const [introAnimation] = useScrollFadeIn();
+  const [giftsAnimation] = useScrollFadeIn();
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -116,26 +118,15 @@ export default function Gift() {
   };
 
   return (
-    <div ref={giftRef} className="pt-[60px] bg-amber-50 text-emerald-900">
+    <div className="pt-[60px] bg-amber-50 text-emerald-900">
       {/* Header */}
-      <header
-        className="relative h-[50vh] bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: `url(${giftHeaderBg})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-black/50 flex items-center justify-center">
-          <div className="text-center text-white p-4">
-            <h1 className="font-allura text-6xl md:text-8xl bg-gradient-to-r from-amber-300 to-emerald-300 bg-clip-text text-transparent drop-shadow-md py-1 px-2">
-              Gift Registry
-            </h1>
-            <p className="mt-2 text-lg font-cormorant">
-              Your presence is the greatest gift
-            </p>
-          </div>
-        </div>
-      </header>
-
+      <Header
+        backgroundImage={giftHeaderBg}
+        headerText={"Gift Registry"}
+        headerParagraph={"Your presence is the greatest gift"}
+      />
       {/* Intro & Bank Details */}
-      <section className="container mx-auto px-2 sm:px-6 lg:px-8 py-16 md:py-24 text-center animate-gift">
+      <Motion.section {...introAnimation} className="container mx-auto px-2 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
         <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-2xl p-4 md:p-8 transition-transform hover:-translate-y-2 duration-500">
           <div className="text-center">
             <p className="text-lg text-gray-800 leading-relaxed ">
@@ -190,10 +181,10 @@ export default function Gift() {
             </div>
           </div>
         </div>
-      </section>
+      </Motion.section>
 
       {/* Gift List */}
-      <main className="bg-white py-16 md:py-24 animate-gift">
+      <Motion.main {...giftsAnimation} className="bg-white py-16 md:py-24">
         <div className="flex items-center justify-center gap-4 p-4 md:p-6">
           <FaGift className="text-4xl md:text-6xl" />
           <p className="text-3xl md:text-4xl font-allura text-center ">
@@ -203,7 +194,8 @@ export default function Gift() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-12">
             {giftOptions.map((gift, index) => (
-              <div
+              <motion.div
+                variants={giftsAnimation.variants}
                 key={index}
                 className="rounded-lg shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
               >
@@ -219,7 +211,7 @@ export default function Gift() {
                   </h3>
                   <div className="mt-2 flex items-center justify-center gap-2 ">
                     <FaRegCreditCard className="text-amber-500" />
-                    <p >
+                    <p>
                       {gift.paymentMethod === "cash" &&
                       gift.amount.toLowerCase() !== "as desired"
                         ? "₦"
@@ -230,11 +222,11 @@ export default function Gift() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </main>
+      </Motion.main>
     </div>
   );
 }

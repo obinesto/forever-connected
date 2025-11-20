@@ -1,38 +1,51 @@
 import { useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-gsap.registerPlugin(ScrollTrigger);
+export const useScrollFadeIn = (direction, options = {}, transitionOptions = {}) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+    ...options,
+  });
 
-export const useScrollFadeIn = (
-  triggerRef,
-  animationClass,
-  options,
-) => {
   useEffect(() => {
-    // Using gsap.context() for proper cleanup
-    const ctx = gsap.context(() => {
-      if (!triggerRef.current) return;
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
 
-      gsap.from(animationClass, {
-        y: 30,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          start: "top 90%",
-          end: "bottom 30%",
-          toggleActions: "play none none none",
-          scrub: 1,
-          fastScrollEnd: true,
-          markers: false,
-          ...options,
+  let x = 0;
+  let y = 0;
+
+  if (direction === "left") {
+    x = -100;
+  } else if (direction === "right") {
+    x = 100;
+  } else {
+    y = 30;
+  }
+
+  const animation = {
+    ref,
+    initial: "hidden",
+    animate: controls,
+    variants: {
+      hidden: { opacity: 0, x, y },
+      visible: (i = 1) => ({
+        opacity: 1,
+        y: 0,
+        x: 0,
+        transition: {
+          staggerChildren: 0.2,
+          delayChildren: 0.04 * i,
+          duration: 0.8,
+          ease: "easeOut",
+          ...transitionOptions
         },
-      });
-    }, triggerRef); // scope animations to the component
-
-    return () => ctx.revert(); // cleanup
-  }, [triggerRef, animationClass, options]);
+      }),
+    },
+  };
+  return [animation];
 };

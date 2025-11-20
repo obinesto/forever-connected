@@ -1,5 +1,5 @@
-import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { motion as Motion} from "framer-motion";
 import { FaUsers, FaEnvelopeOpenText } from "react-icons/fa";
 import { useScrollFadeIn } from "../../hooks/useScrollFadeIn";
 import bridesmaid1 from "/wedding-party/Oreoluwa.jpg";
@@ -15,17 +15,19 @@ const partyImages = [
 ];
 
 export default function ContentFour() {
-  const contentFourRef = useRef(null);
-  useScrollFadeIn(contentFourRef, ".animate-content-four");
+  const [animation] = useScrollFadeIn();
 
   return (
-    <div
-      ref={contentFourRef}
+    <Motion.div
+      {...animation}
       className="w-full min-h-[80vh] py-16 md:py-24 bg-amber-50 flex items-center"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center">
         {/* Wedding Party Section */}
-        <div className="animate-content-four text-center flex flex-col items-center p-6 bg-white rounded-2xl shadow-xl transition-transform duration-300 hover:-translate-y-2">
+        <Motion.div
+          variants={animation.variants}
+          className="text-center flex flex-col items-center p-6 bg-white rounded-2xl shadow-xl transition-transform duration-300 hover:-translate-y-2"
+        >
           <FaUsers className="text-5xl text-emerald-800 mb-4" />
           <h2 className="text-4xl font-allura text-emerald-800">
             Meet Our Wedding Party
@@ -50,10 +52,13 @@ export default function ContentFour() {
           >
             Meet Them All
           </Link>
-        </div>
+        </Motion.div>
 
         {/* RSVP Section */}
-        <div className="animate-content-four text-center flex flex-col items-center p-8 bg-emerald-800 text-white rounded-2xl shadow-xl transition-transform duration-300 hover:-translate-y-2">
+        <Motion.div
+          variants={animation.variants}
+          className="text-center flex flex-col items-center p-8 bg-emerald-800 text-white rounded-2xl shadow-xl transition-transform duration-300 hover:-translate-y-2"
+        >
           <FaEnvelopeOpenText className="text-5xl text-amber-300 mb-4" />
           <h2 className="text-4xl font-allura text-amber-300">
             Will You Be There?
@@ -68,8 +73,8 @@ export default function ContentFour() {
           >
             RSVP Now
           </Link>
-        </div>
+        </Motion.div>
       </div>
-    </div>
+    </Motion.div>
   );
 }

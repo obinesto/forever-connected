@@ -15,24 +15,31 @@ import img6 from "/pre-wedding-shots/F&C6.jpg";
 import img7 from "/pre-wedding-shots/F&C7.jpg";
 import img11 from "/pre-wedding-shots/F&C11.jpg";
 
-
-
 export default function Homepage() {
-  // Time to wedding config
+  // Time to or after wedding config
+  const difference = +new Date("2025-11-08T00:00:00") - +new Date();
+
   const calculateTimeLeft = () => {
-    const difference = +new Date("2025-11-08T00:00:00") - +new Date();
-    let timeLeft = {};
+    let timeBefore = {};
+    let timeAfter = {};
 
     if (difference > 0) {
-      timeLeft = {
+      timeBefore = {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / 1000 / 60) % 60),
         seconds: Math.floor((difference / 1000) % 60),
       };
+      return timeBefore;
+    } else {
+      timeAfter = {
+        days: Math.floor(-difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((-difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((-difference / 1000 / 60) % 60),
+        seconds: Math.floor((-difference / 1000) % 60),
+      };
+      return timeAfter;
     }
-
-    return timeLeft;
   };
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
@@ -50,7 +57,7 @@ export default function Homepage() {
   };
 
   // Carousel config
-  const carouselImages = [img1, img2, img11, img4, img5, img6, img7, img3,];
+  const carouselImages = [img1, img2, img11, img4, img5, img6, img7, img3];
 
   const sliderSettings = {
     dots: true,
@@ -67,7 +74,7 @@ export default function Homepage() {
   return (
     // Carousel
     <>
-      <div className="relative w-full pt-[60px]">
+      <div className="relative max-w-full pt-[60px] overflow-x-hidden">
         {/* Carousel images container */}
         <Slider {...sliderSettings} className="h-screen w-full">
           {carouselImages.map((img, index) => (
@@ -99,35 +106,38 @@ export default function Homepage() {
             <div className="mt-4 flex justify-center md:justify-start space-x-4 md:space-x-8 text-center">
               <div>
                 <div className="text-4xl font-semibold">
-                  {formatTime(timeLeft.days || 0)}
+                  {formatTime(timeLeft.days)}
                 </div>
                 <div className="text-xs">Days</div>
               </div>
               <div>
                 <div className="text-4xl font-semibold">
-                  {formatTime(timeLeft.hours || 0)}
+                  {formatTime(timeLeft.hours)}
                 </div>
                 <div className="text-xs">Hours</div>
               </div>
               <div>
                 <div className="text-4xl font-semibold">
-                  {formatTime(timeLeft.minutes || 0)}
+                  {formatTime(timeLeft.minutes)}
                 </div>
                 <div className="text-xs">Minutes</div>
               </div>
               <div>
                 <div className="text-4xl font-semibold">
-                  {formatTime(timeLeft.seconds || 0)}
+                  {formatTime(timeLeft.seconds)}
                 </div>
                 <div className="text-xs">Seconds</div>
               </div>
+              {difference < 0 && (
+                <div className="text-4xl font-semibold -ml-2 md:-ml-4">ago</div>
+              )}
             </div>
           </div>
         </div>
       </div>
-      <ContentOne img2Prop = {img2} />
-      <ContentTwo img5Prop = {img5} />
-      <ContentThree sliderProp = {Slider}/>
+      <ContentOne img2Prop={img2} />
+      <ContentTwo img5Prop={img5} />
+      <ContentThree sliderProp={Slider} />
       <ContentFour />
     </>
   );

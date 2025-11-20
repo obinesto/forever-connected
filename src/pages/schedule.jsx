@@ -1,6 +1,7 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { motion as Motion } from "framer-motion";
 import { useScrollFadeIn } from "../hooks/useScrollFadeIn";
 import { AddToCalendarButton } from "add-to-calendar-button-react";
 import {
@@ -11,6 +12,7 @@ import {
   FaRegCopy,
 } from "react-icons/fa";
 import { IoClose, IoFlowerOutline } from "react-icons/io5";
+import Header from "../components/header";
 import headerBg from "/header-backgrounds/emerald-dark-image.jpg";
 import img1 from "/pre-wedding-shots/F&C1.jpg";
 import img3 from "/pre-wedding-shots/F&C3.jpg";
@@ -48,8 +50,8 @@ const scheduleDetails = [
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function Schedule() {
-  const scheduleRef = useRef(null);
-  useScrollFadeIn(scheduleRef, ".animate-schedule");
+  const [scheduleAnimation] = useScrollFadeIn();
+  const [rsvpAnimation] = useScrollFadeIn();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [rsvpStep, setRsvpStep] = useState("initial");
@@ -105,31 +107,21 @@ export default function Schedule() {
   };
 
   return (
-    <div ref={scheduleRef} className="pt-[60px] bg-amber-50 text-emerald-900">
+    <div className="pt-[60px] bg-amber-50 text-emerald-900">
       {/* Header */}
-      <header
-        className="relative h-[50vh] bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: `url(${headerBg})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-black/50 flex items-center justify-center">
-          <div className="text-center text-white p-4">
-            <h1 className="font-allura text-6xl md:text-8xl bg-gradient-to-r from-amber-300 to-emerald-300 bg-clip-text text-transparent drop-shadow-md py-1 px-2">
-              Wedding Schedule
-            </h1>
-            <p className="mt-2 text-lg font-cormorant">
-              View our wedding timeline
-            </p>
-          </div>
-        </div>
-      </header>
-
+      <Header
+        backgroundImage={headerBg}
+        headerText={"Wedding Schedule"}
+        headerParagraph={"View our wedding timeline"}
+      />
       {/* Schedule Sections */}
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <Motion.main {...scheduleAnimation} className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-6xl mx-auto space-y-20 md:space-y-32">
           {scheduleDetails.map((event, index) => (
-            <section
+            <Motion.section
               key={index}
-              className={`flex flex-col md:flex-row items-center gap-8 md:gap-12 animate-schedule ${
+              variants={scheduleAnimation.variants}
+              className={`flex flex-col md:flex-row items-center gap-8 md:gap-12 ${
                 index % 2 !== 0 ? "md:flex-row-reverse" : ""
               }`}
             >
@@ -208,15 +200,15 @@ export default function Schedule() {
                   {event.description}
                 </p>
               </div>
-            </section>
+            </Motion.section>
           ))}
         </div>
-      </main>
+      </Motion.main>
 
       {/* RSVP Section */}
       <section className="py-16 md:py-24" id="rsvp">
         {/* RSVP card */}
-        <div className="container mx-auto px-4 animate-schedule hover:-translate-y-2 transition-transform duration-300">
+        <Motion.div {...rsvpAnimation} className="container mx-auto px-4 hover:-translate-y-2 transition-transform duration-300">
           <h2 className="text-4xl md:text-5xl text-center font-cormorant font-bold text-emerald-800">
             RSVP
           </h2>
@@ -232,7 +224,7 @@ export default function Schedule() {
               RSVP Now
             </button>
           </div>
-        </div>
+        </Motion.div>
       </section>
 
       {/* RSVP Modal */}

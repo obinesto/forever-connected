@@ -1,8 +1,9 @@
-import { useRef } from "react";
-import { useScrollFadeIn } from "../hooks/useScrollFadeIn";
+import { useEffect, useState } from "react";
+import { motion as Motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaQuoteLeft, FaQuoteRight, FaCloudDownloadAlt } from "react-icons/fa";
 import { RiHeartsLine } from "react-icons/ri";
+import Header from "../components/header";
 import img1 from "/pre-wedding-shots/F&C1.jpg";
 import img2 from "/pre-wedding-shots/F&C2.jpg";
 import img3 from "/pre-wedding-shots/F&C3.jpg";
@@ -15,6 +16,7 @@ import img9 from "/pre-wedding-shots/F&C9.jpg";
 import img10 from "/pre-wedding-shots/F&C10.jpg";
 import img11 from "/pre-wedding-shots/F&C11.jpg";
 import img12 from "/pre-wedding-shots/F&C13.jpg";
+import { useScrollFadeIn } from "../hooks/useScrollFadeIn";
 
 const storySections = [
   {
@@ -50,8 +52,43 @@ const galleryImages = [
 ];
 
 export default function Story() {
-  const storyRef = useRef(null);
-  useScrollFadeIn(storyRef, ".animate-story");
+  const [storyAnimation] = useScrollFadeIn();
+  const [galleryHeaderAnimation] = useScrollFadeIn();
+  const [memoriesAnimation] = useScrollFadeIn();
+
+  const transitionOptions = {staggerChildren: 0.8, duration: 1.0,}
+  const [galleryImageAnimation] = useScrollFadeIn("", {} , transitionOptions);
+  const [galleryImageAnimationLeft] = useScrollFadeIn("left", {} , transitionOptions);
+  const [galleryImageAnimationRight] = useScrollFadeIn("right", {} , transitionOptions);
+
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+ 
+  const getAnimationForIndex = (index) => {
+    if (isLargeScreen) {
+      // 3-column layout
+      if (index % 3 === 0) {
+        return galleryImageAnimationLeft;
+      }
+      if (index % 3 === 1) {
+        return galleryImageAnimation;
+      }
+      return galleryImageAnimationRight;
+    }
+    // 1 or 2-column layout
+    if (index % 2 === 0) {
+      return galleryImageAnimationLeft;
+    }
+    return galleryImageAnimationRight;
+  };
 
   const handleDownload = (imageUrl) => {
     const link = document.createElement("a");
@@ -65,30 +102,23 @@ export default function Story() {
   };
 
   return (
-    <div ref={storyRef} className="pt-[60px] bg-amber-50 text-emerald-900">
+    <div className="pt-[60px] bg-amber-50 text-emerald-900 overflow-x-hidden">
       {/* Header */}
-      <header
-        className="relative h-[50vh] md:h-screen bg-cover bg-top bg-fixed"
-        style={{ backgroundImage: `url(${img4})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-amber-50/30 to-emerald-900/40 flex items-center justify-center">
-          <div className="text-center text-white p-4">
-            <h1 className="font-allura text-6xl md:text-8xl bg-gradient-to-r from-amber-300 to-emerald-300 bg-clip-text text-transparent drop-shadow-md py-1 px-2">
-              Our Love Story
-            </h1>
-            <p className="mt-2 text-lg font-cormorant">
-              From a simple hello to a lifetime together.
-            </p>
-          </div>
-        </div>
-      </header>
-
+      <Header
+        backgroundImage={img4}
+        headerText={"Our Love Story"}
+        headerParagraph={"From a simple hello to a lifetime together."}
+      />
       {/* Story Sections */}
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 animate-story">
-        <div className="max-w-6xl mx-auto space-y-20 md:space-y-32">
+      <Motion.main
+        {...storyAnimation}
+        className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+      >
+        <div className="max-w-6xl mx-auto space-y-20 md:space-y-32 ">
           {storySections.map((section, index) => (
-            <section
+            <Motion.section
               key={index}
+              variants={storyAnimation.variants}
               className={`flex flex-col md:flex-row items-center gap-8 md:gap-12 ${
                 index % 2 !== 0 ? "md:flex-row-reverse" : ""
               }`}
@@ -122,10 +152,10 @@ export default function Story() {
                   <FaQuoteRight className="text-amber-400 ml-3 flex-shrink-0" />
                 </div>
               </div>
-            </section>
+            </Motion.section>
           ))}
         </div>
-      </main>
+      </Motion.main>
 
       {/* Photo Gallery */}
       <section
@@ -133,43 +163,52 @@ export default function Story() {
         className="bg-white py-16 md:py-24 scroll-mt-[60px]"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 animate-story">
+          <Motion.div {...galleryHeaderAnimation} className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-cormorant font-bold text-emerald-800">
               Our Moments
             </h2>
             <p className="mt-2 font-allura text-3xl text-amber-500">
               a glimpse into our journey
             </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 animate-story">
-            {galleryImages.map((image, index) => (
-              <div
-                key={index}
-                className="relative group overflow-hidden rounded-lg shadow-lg"
-                tabIndex={0}
-              >
-                <img
-                  src={image.src}
-                  alt={`couple shot ${index + 1}`}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button
-                    onClick={() => handleDownload(image.src)}
-                    className="absolute bottom-2 right-2 flex items-center gap-2 bg-white bg-opacity-80 text-emerald-800 px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-500 hover:bg-amber-300 focus:outline-none"
-                    aria-label={`Download ${image.alt}`}
-                  >
-                    <FaCloudDownloadAlt size={20} />
-                    <span className="font-semibold text-sm inline">
-                      Download
-                    </span>
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-12 animate-story">
+          </Motion.div>
+
+          {/* image grid */}
+          <Motion.div
+            {...getAnimationForIndex()}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8"
+          >
+            {galleryImages.map((image, i) => {
+              return (
+                <Motion.div
+                  variants={getAnimationForIndex(i).variants}
+                  key={i}
+                  className="relative group overflow-hidden rounded-lg shadow-lg"
+                  tabIndex={0}
+                >
+                  <img
+                    src={image.src}
+                    alt={`couple shot ${i + 1}`}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <button
+                      onClick={() => handleDownload(image.src)}
+                      className="absolute bottom-2 right-2 flex items-center gap-2 bg-white bg-opacity-80 text-emerald-800 px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-500 hover:bg-amber-300 focus:outline-none"
+                      aria-label={`Download ${image.alt}`}
+                    >
+                      <FaCloudDownloadAlt size={20} />
+                      <span className="font-semibold text-sm inline">
+                        Download
+                      </span>
+                    </button>
+                  </div>
+                </Motion.div>
+              );
+            })}
+          </Motion.div>
+
+          <div className="text-center mt-12">
             <p className="text-lg text-black font-light">
               These photos embodifies the essence of our relationship—being{" "}
               <span className="font-extrabold font-cormorant text-emerald-800">
@@ -183,7 +222,10 @@ export default function Story() {
       </section>
 
       {/* Wedding Memories Link Section */}
-      <section className="bg-emerald-800 text-white py-16 md:py-20 shadow-xl animate-story">
+      <Motion.section
+        {...memoriesAnimation}
+        className="bg-emerald-800 text-white py-16 md:py-20 shadow-xl"
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-cormorant font-bold">
             Be a Part of Our Story
@@ -203,7 +245,7 @@ export default function Story() {
             Share Your Memories
           </Link>
         </div>
-      </section>
+      </Motion.section>
     </div>
   );
 }
