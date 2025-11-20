@@ -24,7 +24,7 @@ export const useScrollFadeIn = (direction, options = {}, transitionOptions = {})
   } else if (direction === "right") {
     x = 100;
   } else {
-    y = 30;
+    y = 50;
   }
 
   const animation = {

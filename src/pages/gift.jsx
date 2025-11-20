@@ -194,7 +194,7 @@ export default function Gift() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-12">
             {giftOptions.map((gift, index) => (
-              <motion.div
+              <Motion.div
                 variants={giftsAnimation.variants}
                 key={index}
                 className="rounded-lg shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
@@ -222,7 +222,7 @@ export default function Gift() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </Motion.div>
             ))}
           </div>
         </div>
