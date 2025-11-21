@@ -9,11 +9,10 @@ The website includes several pages to guide guests:
 - **Homepage**: A welcoming landing page.
 - **Our Story**: The couple's story.
 - **Wedding Memories**: A gallery of memories.
-- **Schedule**: The event schedule for the wedding day.
+- **Schedule**: The event schedule for the wedding day and RSVP section.
 - **Gift Registry**: Information on gifts.
 - **Wedding Party**: Introducing the bridal and groom's parties.
 - **Accommodation**: Hotel and lodging suggestions for guests.
-- **Admin**: A private section for management.
 
 The site also features:
 - A loading preloader for a smooth initial experience.
