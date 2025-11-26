@@ -56,10 +56,18 @@ export default function Story() {
   const [galleryHeaderAnimation] = useScrollFadeIn();
   const [memoriesAnimation] = useScrollFadeIn();
 
-  const transitionOptions = {staggerChildren: 0.8, duration: 1.0,}
-  const [galleryImageAnimation] = useScrollFadeIn("", {} , transitionOptions);
-  const [galleryImageAnimationLeft] = useScrollFadeIn("left", {} , transitionOptions);
-  const [galleryImageAnimationRight] = useScrollFadeIn("right", {} , transitionOptions);
+  const transitionOptions = { staggerChildren: 0.8, duration: 1.0 };
+  const [galleryImageAnimation] = useScrollFadeIn("", {}, transitionOptions);
+  const [galleryImageAnimationLeft] = useScrollFadeIn(
+    "left",
+    {},
+    transitionOptions
+  );
+  const [galleryImageAnimationRight] = useScrollFadeIn(
+    "right",
+    {},
+    transitionOptions
+  );
 
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
 
@@ -71,7 +79,7 @@ export default function Story() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
- 
+
   const getAnimationForIndex = (index) => {
     if (isLargeScreen) {
       // 3-column layout
@@ -105,6 +113,7 @@ export default function Story() {
     <div className="pt-[60px] bg-amber-50 text-emerald-900 overflow-x-hidden">
       {/* Header */}
       <Header
+        imageClassName={"md:h-screen bg-cover bg-top bg-fixed"}
         backgroundImage={img4}
         headerText={"Our Love Story"}
         headerParagraph={"From a simple hello to a lifetime together."}

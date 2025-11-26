@@ -1,4 +1,4 @@
-import { motion as Motion} from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaRegCalendarDays, FaHotel, FaGift } from "react-icons/fa6";
 import { GiGlassCelebration } from "react-icons/gi";
@@ -29,8 +29,8 @@ const events = [
 ];
 
 export default function ContentThree({ sliderProp }) {
-  const [animation] = useScrollFadeIn({ threshold: 0.2 });
-  const [animationCards] = useScrollFadeIn({ threshold: 0.1 });
+  const [animation] = useScrollFadeIn();
+  const [animationCards] = useScrollFadeIn();
 
   const Slider = sliderProp;
 
@@ -53,7 +53,8 @@ export default function ContentThree({ sliderProp }) {
       {/* Background Divs */}
       <Motion.div
         variants={animation.variants}
-        className="h-[45vh] md:h-[65%] bg-amber-50 flex flex-col items-center pt-8 md:pt-12">
+        className="h-[45vh] md:h-[65%] bg-amber-50 flex flex-col items-center pt-8 md:pt-12"
+      >
         <h1 className="font-bold font-allura text-2xl sm:text-3xl md:text-4xl text-emerald-800 flex items-center gap-2 text-center px-4">
           Join Our Celebration
           <GiGlassCelebration size={40} />
@@ -101,26 +102,24 @@ export default function ContentThree({ sliderProp }) {
         className="hidden md:flex absolute inset-0 top-[15%] items-center justify-center gap-8 lg:gap-16 px-8"
       >
         {events.map((event, index) => (
-          <Motion.div
-            variants={animationCards.variants}
-            className="hidden md:flex flex-col items-center bg-white rounded-2xl shadow-xl max-w-[320px] h-96 p-8 text-center transition-transform duration-300 hover:-translate-y-2"
-            key={index}
-          >
-            <div className="mb-4 flex items-center justify-center size-20 rounded-full border-4 border-amber-300 bg-amber-50">
-              <div className="text-emerald-800">
-                <event.icon size={32} />
+          <Motion.div variants={animationCards.variants} key={index}>
+            <div className="hidden md:flex flex-col items-center bg-white rounded-2xl shadow-xl max-w-[320px] h-96 p-8 text-center transition-transform duration-300 hover:-translate-y-2">
+              <div className="mb-4 flex items-center justify-center size-20 rounded-full border-4 border-amber-300 bg-amber-50">
+                <div className="text-emerald-800">
+                  <event.icon size={32} />
+                </div>
               </div>
+              <h3 className="text-xl font-bold capitalize text-emerald-800">
+                {event.type}
+              </h3>
+              <p className="mt-2 text-gray-600 flex-grow">{event.content}</p>
+              <Link
+                to={event.path}
+                className="mt-4 text-emerald-800 uppercase tracking-wider font-semibold text-sm border-b-2 border-amber-400 hover:text-amber-400 transition-colors duration-300 cursor-pointer z-10"
+              >
+                {event.link}
+              </Link>
             </div>
-            <h3 className="text-xl font-bold capitalize text-emerald-800">
-              {event.type}
-            </h3>
-            <p className="mt-2 text-gray-600 flex-grow">{event.content}</p>
-            <Link
-              to={event.path}
-              className="mt-4 text-emerald-800 uppercase tracking-wider font-semibold text-sm border-b-2 border-amber-400 hover:text-amber-400 transition-colors duration-300 cursor-pointer z-10"
-            >
-              {event.link}
-            </Link>
           </Motion.div>
         ))}
       </Motion.div>

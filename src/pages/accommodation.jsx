@@ -51,6 +51,43 @@ const accommodationDetails = [
   },
 ];
 
+const AccommodationCard = ({hotel}) => (
+  <div className="bg-white rounded-lg shadow-xl overflow-hidden transition-transform duration-500 hover:shadow-2xl hover:-translate-y-2">
+    <img
+      src={hotel.picture}
+      alt={hotel.name}
+      className="w-full h-56 object-cover"
+      loading="lazy"
+    />
+    <div className="p-6">
+      <div className="flex justify-between items-start mb-2">
+        <h3 className="text-xl font-cormorant font-bold text-emerald-800">
+          {hotel.name}
+        </h3>
+        <div className="flex items-center bg-amber-400 text-emerald-900 px-2 py-1 rounded-full text-sm font-bold">
+          <FaStar className="mr-1" />
+          <span>{hotel.rating}</span>
+        </div>
+      </div>
+      <p className="text-gray-600 text-sm flex items-start gap-2 mb-4">
+        <FaMapMarkerAlt className="text-amber-500 mt-1 flex-shrink-0" />
+        <span>{hotel.address}</span>
+      </p>
+      <a
+        href={hotel.mapLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-2 text-sm text-emerald-800 font-semibold hover:text-amber-500 transition-colors"
+      >
+        <span>
+          <FaMap />
+        </span>
+        View on Map
+      </a>
+    </div>
+  </div>
+);
+
 export default function Accommodation() {
   const [animation] = useScrollFadeIn();
 
@@ -64,45 +101,13 @@ export default function Accommodation() {
       />
       {/* Accommodation List */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <Motion.div {...animation} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+        <Motion.div
+          {...animation}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12"
+        >
           {accommodationDetails.map((hotel, index) => (
-            <Motion.div
-              variants={animation.variants}
-              key={index}
-              className="bg-white rounded-lg shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
-            >
-              <img
-                src={hotel.picture}
-                alt={hotel.name}
-                className="w-full h-56 object-cover"
-                loading="lazy"
-              />
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-cormorant font-bold text-emerald-800">
-                    {hotel.name}
-                  </h3>
-                  <div className="flex items-center bg-amber-400 text-emerald-900 px-2 py-1 rounded-full text-sm font-bold">
-                    <FaStar className="mr-1" />
-                    <span>{hotel.rating}</span>
-                  </div>
-                </div>
-                <p className="text-gray-600 text-sm flex items-start gap-2 mb-4">
-                  <FaMapMarkerAlt className="text-amber-500 mt-1 flex-shrink-0" />
-                  <span>{hotel.address}</span>
-                </p>
-                <a
-                  href={hotel.mapLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-emerald-800 font-semibold hover:text-amber-500 transition-colors"
-                >
-                  <span>
-                    <FaMap />
-                  </span>
-                  View on Map
-                </a>
-              </div>
+            <Motion.div variants={animation.variants} key={index}>
+              <AccommodationCard hotel={hotel} />
             </Motion.div>
           ))}
         </Motion.div>

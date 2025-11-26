@@ -206,10 +206,10 @@ export default function Schedule() {
       </Motion.main>
 
       {/* RSVP Section */}
-      <section className="py-16 md:py-24" id="rsvp">
+      <Motion.section {...rsvpAnimation} className="py-16 md:py-24" id="rsvp">
         {/* RSVP card */}
-        <Motion.div {...rsvpAnimation} className="container mx-auto px-4 hover:-translate-y-2 transition-transform duration-300">
-          <h2 className="text-4xl md:text-5xl text-center font-cormorant font-bold text-emerald-800">
+        <div  className="container mx-auto px-4 hover:-translate-y-2 transition-transform duration-300">
+          <h2 className="text-4xl md:text-5xl text-center font-cormorant font-bold text-emerald-800 mb-4 md:mb-8">
             RSVP
           </h2>
           <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-2xl p-8 md:p-12 text-center">
@@ -224,8 +224,8 @@ export default function Schedule() {
               RSVP Now
             </button>
           </div>
-        </Motion.div>
-      </section>
+        </div>
+      </Motion.section>
 
       {/* RSVP Modal */}
       {isModalOpen && (

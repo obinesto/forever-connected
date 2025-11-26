@@ -6,7 +6,7 @@ export const useScrollFadeIn = (direction, options = {}, transitionOptions = {})
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.2,
     ...options,
   });
 
@@ -24,7 +24,7 @@ export const useScrollFadeIn = (direction, options = {}, transitionOptions = {})
   } else if (direction === "right") {
     x = 100;
   } else {
-    y = 50;
+    y = 100;
   }
 
   const animation = {
@@ -33,14 +33,14 @@ export const useScrollFadeIn = (direction, options = {}, transitionOptions = {})
     animate: controls,
     variants: {
       hidden: { opacity: 0, x, y },
-      visible: (i = 1) => ({
+      visible: () => ({
         opacity: 1,
         y: 0,
         x: 0,
         transition: {
-          staggerChildren: 0.2,
-          delayChildren: 0.04 * i,
-          duration: 0.8,
+          staggerChildren: 0.6,
+          delayChildren: 0.6,
+          duration: 1.2,
           ease: "easeOut",
           ...transitionOptions
         },

@@ -22,10 +22,9 @@ export default function ContentFour() {
       {...animation}
       className="w-full min-h-[80vh] py-16 md:py-24 bg-amber-50 flex items-center"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center">
+      <Motion.div variants={animation.variants} className="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center">
         {/* Wedding Party Section */}
-        <Motion.div
-          variants={animation.variants}
+        <div
           className="text-center flex flex-col items-center p-6 bg-white rounded-2xl shadow-xl transition-transform duration-300 hover:-translate-y-2"
         >
           <FaUsers className="text-5xl text-emerald-800 mb-4" />
@@ -52,11 +51,10 @@ export default function ContentFour() {
           >
             Meet Them All
           </Link>
-        </Motion.div>
+        </div>
 
         {/* RSVP Section */}
-        <Motion.div
-          variants={animation.variants}
+        <div
           className="text-center flex flex-col items-center p-8 bg-emerald-800 text-white rounded-2xl shadow-xl transition-transform duration-300 hover:-translate-y-2"
         >
           <FaEnvelopeOpenText className="text-5xl text-amber-300 mb-4" />
@@ -73,8 +71,8 @@ export default function ContentFour() {
           >
             RSVP Now
           </Link>
-        </Motion.div>
-      </div>
+        </div>
+      </Motion.div>
     </Motion.div>
   );
 }

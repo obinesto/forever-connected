@@ -261,7 +261,7 @@ const PartyModal = ({ isOpen, onClose, members, startIndex }) => {
 export default function WeddingParty() {
   const [bridalAnimation] = useScrollFadeIn();
   const [groomAnimation] = useScrollFadeIn();
-  
+
   const [modalState, setModalState] = useState({
     isOpen: false,
     members: [],
