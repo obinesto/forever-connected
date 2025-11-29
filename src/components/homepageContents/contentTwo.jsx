@@ -12,7 +12,7 @@ export default function ContentTwo({ img5Prop }) {
   return (
     <Motion.div
       {...animation}
-      className="w-full min-h-screen py-10 flex flex-col gap-8 md:gap-0 md:flex-row items-center justify-between px-4"
+      className="w-full min-h-screen py-10 flex flex-col gap-8 md:gap-0 md:flex-row items-center justify-between px-4 overflow-x-hidden"
     >
       {/* snip frame */}
       <Motion.figure

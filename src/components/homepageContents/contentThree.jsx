@@ -48,7 +48,7 @@ export default function ContentThree({ sliderProp }) {
   return (
     <Motion.div
       {...animation}
-      className="relative w-full h-[80vh] md:h-screen mt-10"
+      className="relative w-full h-[80vh] md:h-screen mt-10 overflow-x-hidden"
     >
       {/* Background Divs */}
       <Motion.div

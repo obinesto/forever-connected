@@ -57,15 +57,19 @@ export default function Story() {
   const [memoriesAnimation] = useScrollFadeIn();
 
   const transitionOptions = { staggerChildren: 0.8, duration: 1.0 };
-  const [galleryImageAnimation] = useScrollFadeIn("", {}, transitionOptions);
+  const [galleryImageAnimation] = useScrollFadeIn(
+    "",
+    { threshold: 0.1 },
+    transitionOptions
+  );
   const [galleryImageAnimationLeft] = useScrollFadeIn(
     "left",
-    {},
+    { threshold: 0.1 },
     transitionOptions
   );
   const [galleryImageAnimationRight] = useScrollFadeIn(
     "right",
-    {},
+    { threshold: 0.1 },
     transitionOptions
   );
 
