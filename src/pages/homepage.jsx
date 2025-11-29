@@ -98,9 +98,11 @@ export default function Homepage() {
               <span className="text-amber-400">Cynthia</span>
             </h1>
             <p className="mt-2 text-lg">November 08, 2025 • Delta, Nigeria</p>
-            <p className="mt-8 text-xl tracking-[0.2em] text-amber-400">
-              SAVE THE DATE!
-            </p>
+            {difference > 0 && (
+              <p className="mt-8 text-xl tracking-[0.2em] text-amber-400">
+                SAVE THE DATE!
+              </p>
+            )}
 
             {/* Countdown Timer */}
             <div className="mt-4 flex justify-center md:justify-start space-x-4 md:space-x-8 text-center">
